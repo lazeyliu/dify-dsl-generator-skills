@@ -1,0 +1,4 @@
+使用 $dify-dsl-generator 只读审核这份 DSL。
+目标文件: tests/fixtures/dsl/min-advanced-chat.yml
+
+当前不允许自动拉起 subagent；如果因此不能完成独立复核，要明确写出来，并给出降级后的结论。不要修改文件。

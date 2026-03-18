@@ -1,0 +1,11 @@
+{
+  "goal": "template",
+  "target": null,
+  "baseline": null,
+  "expected_routes": [
+    "references/index.md",
+    "references/foundations/index.md",
+    "references/templates/index.md"
+  ],
+  "expected_read_only": true
+}

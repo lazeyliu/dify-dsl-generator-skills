@@ -13,7 +13,7 @@
 | code | 含义 |
 | --- | --- |
 | `selector_drift` | selector 漂移或悬空 |
-| `contract_drift` | 输入输出契约漂移 |
+| `contract_drift` | 输入输出约定漂移 |
 | `state_leak` | 状态污染或跨轮泄露 |
 | `fallback_gap` | fallback 缺口 |
 | `evidence_missing` | 关键证据缺失 |
@@ -22,7 +22,7 @@
 | `budget_overrun` | 成本或时延预算风险 |
 | `schema_gap` | 关键中间对象 schema 不清 |
 | `exposure_risk` | 最小暴露失败 |
-| `gate_blocked` | 发布门禁阻塞 |
+| `gate_blocked` | 上线前检查阻塞 |
 
 ## 最小输出
 

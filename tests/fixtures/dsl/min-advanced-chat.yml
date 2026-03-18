@@ -1,0 +1,62 @@
+kind: app
+version: 0.6.0
+app:
+  mode: advanced-chat
+  name: min-advanced-chat
+  description: ""
+  icon: "🤖"
+  icon_background: "#FFEAD5"
+  use_icon_as_answer_icon: false
+dependencies:
+  - type: marketplace
+    current_identifier: null
+    value:
+      marketplace_plugin_unique_identifier: langgenius/example:0.0.1@example
+      version: null
+workflow:
+  conversation_variables:
+    - id: cv_lang
+      name: user_language
+      description: ""
+      selector: [conversation, user_language]
+      value: ""
+      value_type: string
+  environment_variables: []
+  features: {}
+  graph:
+    nodes:
+      - id: start_node
+        type: custom
+        data:
+          title: Start
+          type: start
+          variables: []
+      - id: llm_node
+        type: custom
+        data:
+          title: LLM
+          type: llm
+          model:
+            provider: example
+            name: chat-model
+            mode: chat
+          prompt_template:
+            - role: system
+              text: "Use the user's language."
+      - id: answer_node
+        type: custom
+        data:
+          title: Answer
+          type: answer
+          answer: "{{#llm_node.text#}}"
+    edges:
+      - id: start-to-llm
+        source: start_node
+        sourceHandle: source
+        target: llm_node
+        targetHandle: target
+      - id: llm-to-answer
+        source: llm_node
+        sourceHandle: source
+        target: answer_node
+        targetHandle: target

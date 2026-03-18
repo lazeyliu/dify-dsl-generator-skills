@@ -1,0 +1,34 @@
+kind: app
+version: 0.6.0
+app:
+  mode: workflow
+  name: broken-selector
+  description: ""
+dependencies: []
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    nodes:
+      - id: start_node
+        type: custom
+        data:
+          title: Start
+          type: start
+          variables: []
+      - id: end_node
+        type: custom
+        data:
+          title: End
+          type: end
+          outputs:
+            - variable: answer
+              value_type: string
+              value_selector: [missing_node, text]
+    edges:
+      - id: broken-edge
+        source: start_node
+        sourceHandle: source
+        target: missing_node
+        targetHandle: target

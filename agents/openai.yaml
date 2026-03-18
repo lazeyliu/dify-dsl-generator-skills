@@ -1,7 +1,7 @@
 interface:
-  display_name: "Dify DSL 生成器"
-  short_description: "审核、分析、生成与优化 Dify DSL 工作流编排能力"
-  default_prompt: "使用 $dify-dsl-generator 审核、分析或优化这份 Dify DSL，并给出清晰的结构化建议。"
+  display_name: "Dify DSL 编排"
+  short_description: "生成、审查、修复与重构 Dify DSL"
+  default_prompt: "使用 $dify-dsl-generator 先做模式判断和结构分析，再生成、审查、修复或重构这份 Dify DSL。"
 
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

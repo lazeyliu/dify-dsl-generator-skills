@@ -1,0 +1,41 @@
+kind: rag_pipeline
+version: 0.6.0
+app:
+  mode: workflow
+  name: min-rag-pipeline
+  description: ""
+dependencies: []
+rag_pipeline:
+  name: min-rag-pipeline
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    nodes:
+      - id: datasource_node
+        type: custom
+        data:
+          title: Datasource
+          type: datasource
+      - id: extractor_node
+        type: custom
+        data:
+          title: Extractor
+          type: document-extractor
+      - id: index_node
+        type: custom
+        data:
+          title: Index
+          type: knowledge-index
+    edges:
+      - id: ds-to-extractor
+        source: datasource_node
+        sourceHandle: source
+        target: extractor_node
+        targetHandle: target
+      - id: extractor-to-index
+        source: extractor_node
+        sourceHandle: source
+        target: index_node
+        targetHandle: target

@@ -1,0 +1,20 @@
+{
+  "goal": "review",
+  "target": "tests/fixtures/dsl/min-advanced-chat.yml",
+  "baseline": null,
+  "expected_routes": [
+    "references/index.md",
+    "references/foundations/index.md",
+    "references/nodes/index.md",
+    "references/quality/index.md",
+    "references/governance/index.md"
+  ],
+  "expected_static_routes": [
+    "references/index.md",
+    "references/foundations/index.md",
+    "references/nodes/index.md",
+    "references/quality/index.md",
+    "references/governance/index.md"
+  ],
+  "expected_read_only": true
+}
