@@ -4,7 +4,7 @@
 
 这个目录负责“怎么发现问题、怎么修、怎么审、怎么优化”。当任务已经进入结构检查、问题分级、修复策略、提示词质量或链路优化阶段时，从这里继续。
 
-## 建议从这里开始
+## 推荐读取顺序
 
 1. 修复问题时，先读 [graph-validation-rules.md](graph-validation-rules.md)，再读 [fix-strategies.md](fix-strategies.md) 和 [anti-patterns.md](anti-patterns.md)。
 2. 只读审核时，先读 [review-checklist.md](review-checklist.md)，再读 [report-template.md](report-template.md)。
@@ -36,7 +36,7 @@
 - “如何做结构优化、成本优化和稳定性优化？”
   读 [mode-constraints.md](mode-constraints.md)、[connectivity-analysis.md](connectivity-analysis.md)、[optimization-playbook.md](optimization-playbook.md)、[tuning-playbook.md](tuning-playbook.md)。
 
-## 常见问法
+## 典型请求
 
 - “这份 DSL 哪些地方会导致导入失败？先按阻塞项、高风险项分级。”
 - “不要重写整条链路，先给我最小修复方案。”
@@ -44,7 +44,7 @@
 - “这条链路太贵 / 太脆 / 太绕，帮我做结构优化并说明为什么。”
 - “帮我设计一个真实样本的子代理前向验证，不要泄漏预期答案。”
 
-## 不要在这里停下
+## 使用约束
 
 - 这里负责“发现问题”和“怎么修 / 怎么审”，不替代基础路由与模式判断。
 - 如果问题是字段含义、selector 或输出字段目录，先回 `references/foundations/`。

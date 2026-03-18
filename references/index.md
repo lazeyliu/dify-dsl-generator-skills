@@ -10,7 +10,7 @@
 - 先读入口页，再按需下钻，不要整库读满。
 - 节点、模板、质量和交付判断是不同层级的问题，不要混着看。
 
-## 建议从这里开始
+## 推荐总路线
 
 1. 先读 [foundations/index.md](foundations/index.md)。
 2. 根据任务目标进入下一个目录：
@@ -30,7 +30,7 @@
 - 优化或重构：
   先读 [foundations/index.md](foundations/index.md)，再进入 [quality/index.md](quality/index.md)；涉及可观测性、能力块边界和发布结论时，再进入 [governance/index.md](governance/index.md)。
 
-## 常见问法
+## 典型请求
 
 - “帮我从零写一个 Dify workflow，输入用户问题后调用 HTTP 接口，再整理成结构化输出。”
 - “这份 DSL 为什么导不进去？帮我找出节点字段和 selector 的问题。”
@@ -51,7 +51,7 @@
 - [governance/index.md](governance/index.md)
   上线前检查、变更影响、覆盖率、升级条件、观测字段约定和能力块边界约定。
 
-## 不要停在这一层
+## 使用约束
 
 - 这里是总览，不替代各子目录入口页。
 - 如果任务已经非常明确，允许直接进入对应子目录的 `index.md`。

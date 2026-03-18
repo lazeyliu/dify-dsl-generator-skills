@@ -31,7 +31,7 @@ REFERENCE_INDEX_REQUIREMENTS = {
             "governance/index.md",
         ),
         "allow_unlinked": (),
-        "required_headings": ("## 按任务快速路由", "## 不要停在这一层"),
+        "required_headings": ("## 按任务快速路由", "## 使用约束"),
     },
     "references/foundations": {
         "index": "index.md",
@@ -48,7 +48,7 @@ REFERENCE_INDEX_REQUIREMENTS = {
             "fixture-index.md",
         ),
         "allow_unlinked": (),
-        "required_headings": ("## 按问题选文档", "## 常见问法", "## 不要停在这一层"),
+        "required_headings": ("## 按问题选文档", "## 典型请求", "## 使用约束"),
     },
     "references/nodes": {
         "index": "index.md",
@@ -80,7 +80,7 @@ REFERENCE_INDEX_REQUIREMENTS = {
             "node-trigger-webhook.md",
         ),
         "allow_unlinked": ("node-index.md",),
-        "required_headings": ("## 建议读取顺序", "## 常见问法"),
+        "required_headings": ("## 建议读取顺序", "## 典型请求"),
     },
     "references/templates": {
         "index": "index.md",
@@ -91,7 +91,7 @@ REFERENCE_INDEX_REQUIREMENTS = {
             "template-variants.md",
         ),
         "allow_unlinked": (),
-        "required_headings": ("## 按问题选文档", "## 常见问法", "## 不要在这里停下"),
+        "required_headings": ("## 按问题选文档", "## 典型请求", "## 使用约束"),
     },
     "references/quality": {
         "index": "index.md",
@@ -112,7 +112,7 @@ REFERENCE_INDEX_REQUIREMENTS = {
             "tuning-playbook.md",
         ),
         "allow_unlinked": (),
-        "required_headings": ("## 按问题选文档", "## 常见问法", "## 不要在这里停下"),
+        "required_headings": ("## 按问题选文档", "## 典型请求", "## 使用约束"),
     },
     "references/governance": {
         "index": "index.md",
@@ -127,7 +127,7 @@ REFERENCE_INDEX_REQUIREMENTS = {
             "issue-taxonomy.md",
         ),
         "allow_unlinked": (),
-        "required_headings": ("## 按问题选文档", "## 常见问法", "## 不要在这里停下"),
+        "required_headings": ("## 按问题选文档", "## 典型请求", "## 使用约束"),
     },
 }
 
