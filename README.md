@@ -2,13 +2,19 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-A general-purpose Codex skill for generating, reviewing, analyzing, optimizing, and repairing Dify DSLs, including:
+A general-purpose agent skill for generating, reviewing, analyzing, optimizing, and repairing Dify DSLs, including:
 
 - `kind: app` with `workflow`
 - `kind: app` with `advanced-chat`
 - `kind: rag_pipeline`
 
 The goal of this skill is not just to produce a YAML file, but to treat a Dify DSL as a system that can be reviewed, tuned, validated, and governed.
+
+Its core workflow is platform-neutral:
+
+- `SKILL.md` and `references/` are the portable core
+- `agents/openai.yaml` is the current adapter metadata for OpenAI / Codex
+- other agent systems can still reuse the core workflow even if they ignore this adapter file
 
 ## Use Cases
 
@@ -31,7 +37,7 @@ This skill is intended for tasks such as:
 
 ## Invocation
 
-In a Codex environment that supports skills, invoke it explicitly like this:
+In a Codex or compatible agent environment that supports explicit skill-style invocation, use:
 
 ```text
 Use $dify-dsl-generator to review this Dify DSL and provide structured recommendations.
@@ -44,6 +50,12 @@ Typical uses include:
 - listing nodes, edges, impact areas, and risks before making changes
 - producing a review report, release-gate result, and tuning suggestions after changes
 
+If another agent platform does not support the same invocation or metadata model, the recommended fallback is:
+
+- load `SKILL.md`
+- load only the needed files from `references/`
+- execute the workflow in read-only review, modification, or analysis mode as appropriate
+
 ## Review and Governance Characteristics
 
 This skill emphasizes:
@@ -54,13 +66,34 @@ This skill emphasizes:
 - conflict arbitration instead of simply concatenating multiple review results
 - governance items such as change impact, coverage matrix, minimal sufficiency, escalation gates, issue taxonomy, and release gates
 
+## Platform Compatibility
+
+This repository is designed to be reusable across agent ecosystems.
+
+- OpenAI / Codex:
+  Uses `agents/openai.yaml` as the current adapter metadata.
+- Claude / Qwen / other agents:
+  Can reuse `SKILL.md` and `references/` as the portable core.
+- If subagents are not available:
+  Degrade to sequential review or self-review instead of assuming multi-agent review is always possible.
+- If platform-specific metadata is needed:
+  Add a separate adapter file instead of modifying the portable core.
+
+In other words:
+
+- the skill definition lives in `SKILL.md`
+- the operational detail lives in `references/`
+- adapter metadata lives under `agents/`
+
+The current repository ships an OpenAI / Codex adapter, but the skill itself is not limited to OpenAI / Codex.
+
 ## Default Conventions
 
 - Default strategy tier: `strict`
 - Coverage pass threshold: applicable path coverage `>= 95%`, and the main path, fallback path, and external-exception path must not be missing
-- Default user-facing output: `Markdown`
+- Default user-facing output: `plain text`
 - Default machine-facing output for API or DSL flow consumption: `JSON`
-- Optional output forms: `plain text`, `HTML`
+- Optional output forms: `Markdown`, `HTML`
 
 ## Directory Structure
 
@@ -89,9 +122,9 @@ dify-dsl-generator/
 ## Directory Notes
 
 - `SKILL.md`
-  The main file Codex uses to trigger and execute the skill.
+  The portable core workflow and operating instructions.
 - `agents/openai.yaml`
-  UI and invocation metadata.
+  Adapter metadata for OpenAI / Codex, used for platform-specific display and invocation.
 - `references/`
   On-demand reference material, review rules, templates, and governance guidance.
 - `README.md`
@@ -106,6 +139,7 @@ dify-dsl-generator/
 - When adding or refining review rules, prefer putting details into `references/` instead of growing `SKILL.md`.
 - When changing review formats or governance rules, keep `report-template.md`, `review-checklist.md`, and `subagent-review.md` in sync.
 - When introducing new defaults, update both `SKILL.md` and the related reference files.
+- When adding support for another agent platform, prefer adding a separate adapter file under `agents/` instead of changing the portable core.
 
 ## License
 
