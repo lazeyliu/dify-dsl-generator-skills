@@ -69,6 +69,7 @@ dify-dsl-generator/
 ├── SKILL.md
 ├── README.md
 ├── README.zh-CN.md
+├── LICENSE
 ├── .gitignore
 ├── agents/
 │   └── openai.yaml
@@ -97,6 +98,8 @@ dify-dsl-generator/
   面向 GitHub 读者和维护者的英文说明。
 - `README.zh-CN.md`
   面向 GitHub 读者和维护者的中文说明。
+- `LICENSE`
+  仓库许可证文件。
 
 ## 维护建议
 
@@ -106,5 +109,4 @@ dify-dsl-generator/
 
 ## 许可证
 
-当前仓库还没有附带 `LICENSE` 文件。  
-如果准备发布到 GitHub，建议在发布前补充明确授权协议。
+当前仓库使用 [MIT License](./LICENSE)。

@@ -68,6 +68,8 @@ This skill emphasizes:
 dify-dsl-generator/
 ├── SKILL.md
 ├── README.md
+├── README.zh-CN.md
+├── LICENSE
 ├── .gitignore
 ├── agents/
 │   └── openai.yaml
@@ -93,7 +95,11 @@ dify-dsl-generator/
 - `references/`
   On-demand reference material, review rules, templates, and governance guidance.
 - `README.md`
-  Human-facing documentation for GitHub readers and maintainers.
+  Human-facing English documentation for GitHub readers and maintainers.
+- `README.zh-CN.md`
+  Human-facing Simplified Chinese documentation for GitHub readers and maintainers.
+- `LICENSE`
+  The repository license file.
 
 ## Maintenance Notes
 
@@ -103,5 +109,4 @@ dify-dsl-generator/
 
 ## License
 
-This repository does not yet include a `LICENSE` file.  
-If you plan to publish it on GitHub, add an explicit license before release.
+This repository is licensed under the [MIT License](./LICENSE).
