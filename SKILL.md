@@ -7,7 +7,7 @@ description: 生成、审查、修复、优化与重构 Dify Workflow、Chatflow
 
 把 Dify DSL 当成“要设计、审核、验证并判断能否交付的编排系统”，不要把任务简化成“直接写一份 YAML”。
 
-## 先做最小路由
+## 先确定入口
 
 先看 [references/index.md](references/index.md) 把整个参考目录收敛到正确子树。
 任何任务都先读 [references/foundations/common-dsl.md](references/foundations/common-dsl.md)，分清当前导出标准、历史兼容形状和 UI 噪声字段。

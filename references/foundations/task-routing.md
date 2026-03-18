@@ -17,7 +17,7 @@
 2. 读 [index.md](../nodes/index.md)，只加载本次会用到的节点文档。
 3. 需要 selector、字段目录或上下游约定时，再补 [selector-templates.md](selector-templates.md)、[output-fields-catalog.md](output-fields-catalog.md)、[node-io-contracts.md](node-io-contracts.md)。
 
-输出重点：
+这一路最后至少要给：
 
 - 模式判断
 - 节点清单
@@ -25,7 +25,7 @@
 - 字段检查表
 - 贯通性分析
 
-典型请求：
+常见问法：
 
 - “帮我从零写一个 workflow，输入 query 后调用工具并输出结构化结果。”
 - “我要一个最小 chatflow 骨架，先给模式判断和节点清单。”
@@ -40,13 +40,13 @@
 4. 读 [validated-template-skeletons.md](../templates/validated-template-skeletons.md) 选择可落地骨架。
 5. 需要同类变体或替代模板时，再读 [template-variants.md](../templates/template-variants.md) 与 [templates-library.md](../templates/templates-library.md)。
 
-输出重点：
+这一路最后至少要给：
 
 - 选中模板与未选模板的取舍理由
 - 模板中保留 / 删除 / 改写的节点
 - 兼容性与风险说明
 
-典型请求：
+常见问法：
 
 - “不要从零写，先给我一个最接近的模板骨架。”
 - “把现有需求映射成低成本版 / 稳定版模板变体。”
@@ -61,14 +61,14 @@
 4. 再按问题位置补读节点文档，不要把整套节点文档全读一遍。
 5. 涉及代码节点、工具节点、外部请求或复杂容器时，再补读相关节点文档与 [node-io-contracts.md](node-io-contracts.md)。
 
-输出重点：
+这一路最后至少要给：
 
 - 错误归因
 - 最小修复方案
 - 修复后链路闭环
 - 仍未消除的兼容性风险
 
-典型请求：
+常见问法：
 
 - “这份 DSL 导不进去，先找出会被实体校验拒绝的地方。”
 - “不要重做，帮我修最小必要字段和断边。”
@@ -85,14 +85,14 @@
 6. 需要独立复核分工或提示词时，再读 [subagent-review.md](../quality/subagent-review.md)。
 7. 涉及上线前检查、变更影响、覆盖率或输入输出约定时，再读 [index.md](../governance/index.md)。
 
-输出重点：
+这一路最后至少要给：
 
 - 校验摘要
 - 分级审查摘要
 - 最终结论
 - 已直接采纳 / 有条件未执行 / 待确认项
 
-典型请求：
+常见问法：
 
 - “先不要改文件，只审核并给我能不能上线的结论。”
 - “帮我做上线前检查判断和风险分级。”
@@ -108,13 +108,13 @@
 5. 涉及变更影响、上线前检查、观测字段约定或能力块化时，先读 [index.md](../governance/index.md)，再读 [change-impact-review.md](../governance/change-impact-review.md)、[evaluation-gates.md](../governance/evaluation-gates.md)、[observability-contract.md](../governance/observability-contract.md)、[capability-contracts.md](../governance/capability-contracts.md)。
 6. 涉及覆盖率、是否已经够用、升级条件或问题编码时，再补 [coverage-matrix.md](../governance/coverage-matrix.md)、[minimal-sufficiency.md](../governance/minimal-sufficiency.md)、[escalation-policies.md](../governance/escalation-policies.md)、[issue-taxonomy.md](../governance/issue-taxonomy.md)。
 
-输出重点：
+这一路最后至少要给：
 
 - 为什么当前结构需要优化或重构
 - 哪些节点 / 约定 / 语义层会变化
 - 哪些交付判断项必须同步补齐
 
-典型请求：
+常见问法：
 
 - “这条链路成本太高，帮我改成低成本版但别牺牲主路径稳定性。”
 - “帮我把现有 DSL 重构成更清晰的能力块，顺便补观测字段约定。”

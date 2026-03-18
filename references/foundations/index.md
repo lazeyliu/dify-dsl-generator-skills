@@ -1,10 +1,10 @@
 # 基础目录索引
 
-这是 `references/foundations/` 的正式入口页。
+这里是 `references/foundations/` 的入口。
 
 这个目录只放共享底座：模式判断、任务路由、交付约定、选择器模板、输出字段目录和字段口径。只要任务还没进入具体节点、模板或交付判断细则，优先在这里完成第一次收敛。
 
-## 推荐读取顺序
+## 建议从这里开始
 
 1. 先读 [common-dsl.md](common-dsl.md)，统一当前导出标准、历史兼容形状和 UI 噪声字段口径。
 2. 再读 [task-routing.md](task-routing.md)，决定是新建、修复、审核、优化还是模板起手。
@@ -30,14 +30,14 @@
 - “字段含义、fixture 线索和样例索引去哪看？”
   读 [field-explanations.md](field-explanations.md) 与 [fixture-index.md](fixture-index.md)。
 
-## 典型请求
+## 常见问法
 
 - “先别写 YAML，帮我判断这个需求应该做成 workflow、chatflow 还是 rag pipeline。”
 - “我需要一个明确的输出顺序，先给模式判断、节点清单和连边，再给 DSL。”
 - “selector 怎么写才稳定？哪些字段是导出噪声，哪些是运行时必需？”
 - “我现在不知道该走修复、审核还是优化路线，先帮我路由。”
 
-## 使用约束
+## 不要停在这一层
 
 - 这里解决的是“怎么路由、怎么判断、怎么写口径”，不是替代节点文档或模板文档。
 - 如果已经明确是某个节点字段问题，转去 `references/nodes/`。
