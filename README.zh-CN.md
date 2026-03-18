@@ -107,6 +107,11 @@ dify-dsl-generator/
 ├── LICENSE
 ├── .gitignore
 ├── agents/
+│   ├── index.md
+│   ├── field-constraint-checker.md
+│   ├── graph-closure-checker.md
+│   ├── prompt-contract-checker.md
+│   ├── release-readiness-checker.md
 │   └── openai.yaml
 ├── scripts/
 │   ├── fast_test_dsl.py
@@ -157,6 +162,10 @@ dify-dsl-generator/
   可移植的核心工作流与执行说明。
 - `agents/openai.yaml`
   面向 OpenAI / Codex 的适配元数据，用于该平台下的展示与调用。
+- `agents/index.md`
+  当前 skill 的角色目录，用来固定子代理分工和角色职责。
+- `agents/*.md`
+  正式角色定义文件，用于子代理派发时复用职责说明和输出要求。
 - `references/`
   按主题拆分的按需加载资料，避免主 skill 和 reference 一起膨胀；总入口是 `references/index.md`。
 - `references/foundations/`

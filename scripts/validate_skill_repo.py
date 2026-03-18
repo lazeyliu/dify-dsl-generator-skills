@@ -172,6 +172,44 @@ def parse_frontmatter(path: Path) -> tuple[dict[str, str], list[str]]:
     return data, errors
 
 
+def parse_agent_frontmatter(path: Path) -> tuple[dict[str, str], list[str]]:
+    errors: list[str] = []
+    content = read_text(path)
+    if not content.startswith("---\n"):
+        return {}, [f"{path}: 缺少 YAML frontmatter 起始分隔线"]
+
+    parts = content.split("---\n", 2)
+    if len(parts) < 3:
+        return {}, [f"{path}: YAML frontmatter 不完整"]
+
+    raw_frontmatter = parts[1].strip().splitlines()
+    data: dict[str, str] = {}
+    for line in raw_frontmatter:
+        match = re.match(r"^([A-Za-z0-9_-]+):\s*(.+?)\s*$", line)
+        if not match:
+            errors.append(f"{path}: 无法解析 frontmatter 行: {line}")
+            continue
+        key, value = match.groups()
+        data[key] = value
+
+    allowed_keys = {"name", "description", "model"}
+    extra_keys = sorted(set(data) - allowed_keys)
+    if extra_keys:
+        errors.append(f"{path}: frontmatter 只允许 name/description/model，发现额外字段: {', '.join(extra_keys)}")
+
+    if not data.get("name"):
+        errors.append(f"{path}: frontmatter 缺少 name")
+    elif not re.fullmatch(r"[a-z0-9-]+", data["name"]):
+        errors.append(f"{path}: name 只能包含小写字母、数字和连字符")
+
+    if not data.get("description"):
+        errors.append(f"{path}: frontmatter 缺少 description")
+    if not data.get("model"):
+        errors.append(f"{path}: frontmatter 缺少 model")
+
+    return data, errors
+
+
 def parse_openai_yaml(path: Path) -> tuple[dict[str, str], list[str]]:
     errors: list[str] = []
     data: dict[str, str] = {}
@@ -210,6 +248,7 @@ def parse_openai_yaml(path: Path) -> tuple[dict[str, str], list[str]]:
 
 def collect_markdown_files(root: Path) -> list[Path]:
     files = [root / "SKILL.md"]
+    files.extend(sorted((root / "agents").glob("*.md")))
     files.extend(sorted((root / "references").rglob("*.md")))
     files.extend(sorted(root.glob("README*.md")))
     return [path for path in files if path.exists()]
@@ -298,6 +337,52 @@ def validate_reference_indexes(root: Path) -> list[str]:
     return errors
 
 
+def validate_agents(root: Path) -> list[str]:
+    errors: list[str] = []
+    agents_dir = root / "agents"
+    index_path = agents_dir / "index.md"
+    required_files = (
+        "field-constraint-checker.md",
+        "graph-closure-checker.md",
+        "prompt-contract-checker.md",
+        "release-readiness-checker.md",
+    )
+
+    if not agents_dir.exists():
+        errors.append(f"{agents_dir}: agents 目录不存在")
+        return errors
+    if not index_path.exists():
+        errors.append(f"{index_path}: 缺少角色目录文件")
+        return errors
+
+    index_content = read_text(index_path)
+    for heading in ("## 角色列表", "## 使用方式"):
+        if heading not in index_content:
+            errors.append(f"{index_path}: 缺少必要章节 {heading}")
+
+    linked_targets = collect_markdown_targets(index_path)
+    for name in required_files:
+        role_path = agents_dir / name
+        if not role_path.exists():
+            errors.append(f"{role_path}: 缺少角色定义文件")
+            continue
+        if name not in linked_targets:
+            errors.append(f"{index_path}: 缺少到 {name} 的角色链接")
+
+        frontmatter, frontmatter_errors = parse_agent_frontmatter(role_path)
+        errors.extend(frontmatter_errors)
+
+        if frontmatter.get("name") and frontmatter["name"] != role_path.stem:
+            errors.append(f"{role_path}: frontmatter name 必须与文件名一致")
+
+        role_content = read_text(role_path)
+        for heading in ("## 关注范围", "## 不要做的事", "## 输出要求"):
+            if heading not in role_content:
+                errors.append(f"{role_path}: 缺少必要章节 {heading}")
+
+    return errors
+
+
 def main() -> int:
     root = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]
     errors: list[str] = []
@@ -330,6 +415,7 @@ def main() -> int:
 
     errors.extend(validate_skill_links(skill_path))
     errors.extend(validate_reference_indexes(root))
+    errors.extend(validate_agents(root))
     for markdown_path in collect_markdown_files(root):
         errors.extend(validate_links(markdown_path))
 

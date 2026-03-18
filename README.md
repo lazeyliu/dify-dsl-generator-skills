@@ -107,6 +107,11 @@ dify-dsl-generator/
 ├── LICENSE
 ├── .gitignore
 ├── agents/
+│   ├── index.md
+│   ├── field-constraint-checker.md
+│   ├── graph-closure-checker.md
+│   ├── prompt-contract-checker.md
+│   ├── release-readiness-checker.md
 │   └── openai.yaml
 ├── scripts/
 │   ├── fast_test_dsl.py
@@ -157,6 +162,10 @@ dify-dsl-generator/
   The portable core workflow and operating instructions.
 - `agents/openai.yaml`
   Adapter metadata for OpenAI / Codex, used for platform-specific display and invocation.
+- `agents/index.md`
+  Role directory for fixing subagent responsibilities and dispatch boundaries.
+- `agents/*.md`
+  Formal role definitions for reusable subagent dispatch prompts and output expectations.
 - `references/`
   On-demand reference material, split by theme to keep routing shallow and loading cost low. The canonical top-level entry is `references/index.md`.
 - `references/foundations/`
