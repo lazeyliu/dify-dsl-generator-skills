@@ -1,7 +1,0 @@
-interface:
-  display_name: "Dify DSL 重构"
-  short_description: "修复、优化与重构既有 DSL"
-  default_prompt: "使用 $dify-dsl-refactor 先诊断问题，再选择最小修复、结构优化或模板重排路径来修改这份 Dify DSL。"
-
-policy:
-  allow_implicit_invocation: false

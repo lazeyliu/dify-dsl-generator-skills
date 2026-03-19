@@ -1,7 +1,0 @@
-interface:
-  display_name: "Dify DSL 交付"
-  short_description: "发布判断、变更影响与观测约定"
-  default_prompt: "使用 $dify-dsl-governance 评估这份 Dify DSL 的发布结论、变更影响、覆盖率和观测字段约定。"
-
-policy:
-  allow_implicit_invocation: false

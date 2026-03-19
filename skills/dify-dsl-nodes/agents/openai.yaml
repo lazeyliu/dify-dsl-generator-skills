@@ -1,7 +1,0 @@
-interface:
-  display_name: "Dify DSL 节点"
-  short_description: "节点字段、组合与容器规则"
-  default_prompt: "使用 $dify-dsl-nodes 只加载这次任务会用到的 Dify 节点文档，收敛节点字段、节点组合和容器规则。"
-
-policy:
-  allow_implicit_invocation: false

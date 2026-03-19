@@ -1,0 +1,23 @@
+**当前任务分类**
+
+- 这是一个目标明确的新建 Dify DSL 任务，需求已经足够进入草稿生成阶段。
+
+**权限边界**
+
+- 当前只要求输出文本 DSL 草稿，不要求直接落盘修改文件。
+
+**主路由**
+
+- 主路由是 `dify-dsl-authoring`。
+
+**为什么不是其他 skill**
+
+- 不是 `dify-dsl-brainstorming`：模式、目标、成功标准和输出边界都已经明确。
+- 不是 `dify-dsl-review`：当前不是只读审查已有 DSL。
+- 不是 `dify-dsl-refactor`：当前没有现成 DSL 需要修复或重构。
+
+**预计联动的底座 skill**
+
+- `dify-dsl-foundations`
+- `dify-dsl-templates`
+- `dify-dsl-nodes`

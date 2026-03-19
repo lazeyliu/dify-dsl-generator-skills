@@ -1,0 +1,8 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/route-to-review
+目标文件: tests/fixtures/dsl/broken-selector.yml
+需求说明: 这是一份现有 Dify workflow。我现在只想做只读审查，判断它是不是明显不完整、能不能直接导入 staging。不要改文件，也不要给修复后的 DSL。
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再决定主路由；结束时必须说明主路由，以及为什么不是 brainstorming / authoring / refactor。

@@ -1,0 +1,133 @@
+{
+  "rows": [
+    {
+      "key": "unclear",
+      "goal_zh": "需求还没收敛",
+      "goal_en": "Requirements still unclear",
+      "entries": [
+        {
+          "name": "using-dify-dsl",
+          "path": "skills/using-dify-dsl/SKILL.md"
+        },
+        {
+          "name": "dify-dsl-brainstorming",
+          "path": "skills/dify-dsl-brainstorming/SKILL.md"
+        }
+      ],
+      "next_zh": "`dify-dsl-authoring / review / refactor`",
+      "next_en": "`dify-dsl-authoring / review / refactor`"
+    },
+    {
+      "key": "create",
+      "goal_zh": "新建 DSL",
+      "goal_en": "Create a new DSL",
+      "entries": [
+        {
+          "name": "using-dify-dsl",
+          "path": "skills/using-dify-dsl/SKILL.md"
+        },
+        {
+          "name": "dify-dsl-authoring",
+          "path": "skills/dify-dsl-authoring/SKILL.md"
+        }
+      ],
+      "next_zh": "高复杂度时进入 `dify-dsl-subagent-review`",
+      "next_en": "Use `dify-dsl-subagent-review` when complexity or risk is high"
+    },
+    {
+      "key": "review",
+      "goal_zh": "只读审查已有 DSL",
+      "goal_en": "Review an existing DSL read-only",
+      "entries": [
+        {
+          "name": "using-dify-dsl",
+          "path": "skills/using-dify-dsl/SKILL.md"
+        },
+        {
+          "name": "dify-dsl-review",
+          "path": "skills/dify-dsl-review/SKILL.md"
+        }
+      ],
+      "next_zh": "需要多方复核时进入 `dify-dsl-subagent-review`",
+      "next_en": "Escalate to `dify-dsl-subagent-review` for formal multi-review"
+    },
+    {
+      "key": "refactor",
+      "goal_zh": "修改已有 DSL",
+      "goal_en": "Modify an existing DSL",
+      "entries": [
+        {
+          "name": "using-dify-dsl",
+          "path": "skills/using-dify-dsl/SKILL.md"
+        },
+        {
+          "name": "dify-dsl-refactor",
+          "path": "skills/dify-dsl-refactor/SKILL.md"
+        }
+      ],
+      "next_zh": "修改后需要独立复核时进入 `dify-dsl-subagent-review`",
+      "next_en": "Use `dify-dsl-subagent-review` after risky changes"
+    },
+    {
+      "key": "template",
+      "goal_zh": "只想选模板",
+      "goal_en": "Only choose a template",
+      "entries": [
+        {
+          "name": "using-dify-dsl",
+          "path": "skills/using-dify-dsl/SKILL.md"
+        },
+        {
+          "name": "dify-dsl-templates",
+          "path": "skills/dify-dsl-templates/SKILL.md"
+        }
+      ],
+      "next_zh": "如需正文再进入 `dify-dsl-authoring`",
+      "next_en": "Move to `dify-dsl-authoring` if a full draft is needed"
+    },
+    {
+      "key": "governance",
+      "goal_zh": "只想判断能不能交付",
+      "goal_en": "Only decide whether it is deliverable",
+      "entries": [
+        {
+          "name": "using-dify-dsl",
+          "path": "skills/using-dify-dsl/SKILL.md"
+        },
+        {
+          "name": "dify-dsl-governance",
+          "path": "skills/dify-dsl-governance/SKILL.md"
+        }
+      ],
+      "next_zh": "如果用户同时明确要求多方独立复核或冲突归并，再进入 `dify-dsl-subagent-review`",
+      "next_en": "Use `dify-dsl-subagent-review` first only when the user explicitly wants multi-review or conflict merge"
+    },
+    {
+      "key": "subagent_review",
+      "goal_zh": "明确要组织多方复核",
+      "goal_en": "Explicitly organize multi-review",
+      "entries": [
+        {
+          "name": "using-dify-dsl",
+          "path": "skills/using-dify-dsl/SKILL.md"
+        },
+        {
+          "name": "dify-dsl-subagent-review",
+          "path": "skills/dify-dsl-subagent-review/SKILL.md"
+        }
+      ],
+      "next_zh": "按并行 / 串行 / 单子代理 / 无子代理退化",
+      "next_en": "Pick parallel / serial / single-subagent / no-subagent fallback"
+    }
+  ],
+  "main_path_zh": [
+    "using-dify-dsl",
+    "-> brainstorming / authoring / review / refactor / templates / governance / subagent-review",
+    "-> 必要时再进入 subagent-review 或 governance"
+  ],
+  "main_path_en": [
+    "using-dify-dsl",
+    "-> brainstorming / authoring / review / refactor / templates / governance / subagent-review",
+    "-> use subagent-review or governance again only when needed"
+  ]
+}

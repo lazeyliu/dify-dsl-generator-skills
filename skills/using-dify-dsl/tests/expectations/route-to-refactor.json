@@ -1,0 +1,10 @@
+{
+  "must_contain_all": [
+    "当前任务分类",
+    "权限边界",
+    "主路由是 `dify-dsl-refactor`",
+    "dify-dsl-foundations",
+    "dify-dsl-nodes",
+    "dify-dsl-quality"
+  ]
+}

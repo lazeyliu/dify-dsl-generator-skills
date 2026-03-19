@@ -1,0 +1,8 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/route-to-refactor
+目标文件: tests/fixtures/dsl/broken-selector.yml
+需求说明: 这是一份现有 Dify workflow。请直接给我最小修复方案和修改后的 DSL 文本，不用改磁盘文件，但可以按“允许修改”的任务来处理。
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再决定主路由；结束时必须说明主路由，以及为什么不是 brainstorming / authoring / review。

@@ -4,10 +4,26 @@
 
 ## 总入口
 
+如果当前平台把本仓库作为一个技能包安装，优先先进入 [../../using-dify-dsl/SKILL.md](../../using-dify-dsl/SKILL.md)，由它完成第一层意图识别和主路由判断。
+
 1. 先读 [common-dsl.md](common-dsl.md)。
 2. 读 [orchestration-modes.md](orchestration-modes.md)，先判模式。
-3. 判断任务类型：新建、模板起手、只读审核、修复 / 优化 / 重构。
+3. 判断任务类型：新建、模板起手、只读审核、修复 / 优化 / 重构、多方独立复核 / 冲突归并。
 4. 根据任务类型切到对应入口 skill。
+
+## 快速路由表
+
+<!-- BEGIN ROUTE_MATRIX -->
+| 用户目标 | 推荐入口 | 常见下一步 |
+| --- | --- | --- |
+| 需求还没收敛 | [using-dify-dsl](../../using-dify-dsl/SKILL.md) 或 [dify-dsl-brainstorming](../../dify-dsl-brainstorming/SKILL.md) | `dify-dsl-authoring / review / refactor` |
+| 新建 DSL | [using-dify-dsl](../../using-dify-dsl/SKILL.md) 或 [dify-dsl-authoring](../../dify-dsl-authoring/SKILL.md) | 高复杂度时进入 `dify-dsl-subagent-review` |
+| 只读审查已有 DSL | [using-dify-dsl](../../using-dify-dsl/SKILL.md) 或 [dify-dsl-review](../../dify-dsl-review/SKILL.md) | 需要多方复核时进入 `dify-dsl-subagent-review` |
+| 修改已有 DSL | [using-dify-dsl](../../using-dify-dsl/SKILL.md) 或 [dify-dsl-refactor](../../dify-dsl-refactor/SKILL.md) | 修改后需要独立复核时进入 `dify-dsl-subagent-review` |
+| 只想选模板 | [using-dify-dsl](../../using-dify-dsl/SKILL.md) 或 [dify-dsl-templates](../../dify-dsl-templates/SKILL.md) | 如需正文再进入 `dify-dsl-authoring` |
+| 只想判断能不能交付 | [using-dify-dsl](../../using-dify-dsl/SKILL.md) 或 [dify-dsl-governance](../../dify-dsl-governance/SKILL.md) | 如果用户同时明确要求多方独立复核或冲突归并，再进入 `dify-dsl-subagent-review` |
+| 明确要组织多方复核 | [using-dify-dsl](../../using-dify-dsl/SKILL.md) 或 [dify-dsl-subagent-review](../../dify-dsl-subagent-review/SKILL.md) | 按并行 / 串行 / 单子代理 / 无子代理退化 |
+<!-- END ROUTE_MATRIX -->
 
 ## 新建 DSL
 
@@ -29,14 +45,23 @@
 - 模板底座：
   [../../dify-dsl-templates/SKILL.md](../../dify-dsl-templates/SKILL.md)
 
-## 只读审核或发布判断
+## 只读审核
 
-适用于不直接改 DSL，只做结构分析、问题分级、交付判断或上线前检查结论。
+适用于不直接改 DSL，只做结构分析、问题分级和只读审查结论。
 
 - 入口 skill：
   [../../dify-dsl-review/SKILL.md](../../dify-dsl-review/SKILL.md)
 - 审查与问题分级：
   [../../dify-dsl-quality/SKILL.md](../../dify-dsl-quality/SKILL.md)
+
+## 发布判断或上线前检查
+
+适用于用户已经明确在问“能不能交付 / 上线 / 放行”，而不是普通结构排查。
+
+- 入口 skill：
+  [../../dify-dsl-governance/SKILL.md](../../dify-dsl-governance/SKILL.md)
+- 如果用户同时明确要求多方独立复核或冲突归并：
+  [../../dify-dsl-subagent-review/SKILL.md](../../dify-dsl-subagent-review/SKILL.md)
 - 发布结论、覆盖率与观测字段：
   [../../dify-dsl-governance/SKILL.md](../../dify-dsl-governance/SKILL.md)
 
@@ -55,9 +80,22 @@
 - 变更影响与上线前检查：
   [../../dify-dsl-governance/SKILL.md](../../dify-dsl-governance/SKILL.md)
 
+## 多方独立复核或冲突归并
+
+适用于已经有 DSL 草稿或已有 DSL，且当前目标是正式组织多方独立复核、子代理退化或冲突仲裁。
+
+- 入口 skill：
+  [../../dify-dsl-subagent-review/SKILL.md](../../dify-dsl-subagent-review/SKILL.md)
+- 模式与编排手册：
+  [../../dify-dsl-subagent-review/references/mode-selection-matrix.md](../../dify-dsl-subagent-review/references/mode-selection-matrix.md),
+  [../../dify-dsl-subagent-review/references/orchestration-playbook.md](../../dify-dsl-subagent-review/references/orchestration-playbook.md)
+- 角色定义：
+  [../../dify-dsl-quality/agents/index.md](../../dify-dsl-quality/agents/index.md)
+
 ## 任务切换规则
 
 - 如果任务目标仍模糊，先回 [../../dify-dsl-brainstorming/SKILL.md](../../dify-dsl-brainstorming/SKILL.md)。
 - 同时出现“先生成再审查”时，先完成 authoring，再进入 review。
 - 同时出现“先修复再优化”时，先消除阻塞问题，再讨论结构优化。
+- 如果已经完成 authoring 或 refactor，但当前样本进入高复杂度、高风险或明确需要多方独立复核，先转去 [../../dify-dsl-subagent-review/SKILL.md](../../dify-dsl-subagent-review/SKILL.md)，不要直接跳到 governance 下最终结论。
 - 如果问题本质上是模式判断错误，不要在错误模式上继续修字段，先回到 [orchestration-modes.md](orchestration-modes.md) 重判。

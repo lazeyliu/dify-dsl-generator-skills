@@ -1,0 +1,22 @@
+**当前任务分类**
+
+- 这是一个已有 DSL 的只读审查任务。
+
+**权限边界**
+
+- 当前是只读边界，不允许输出修改后的 DSL。
+
+**主路由**
+
+- 主路由是 `dify-dsl-review`。
+
+**为什么不是其他 skill**
+
+- 用户已显式指定 `dify-dsl-review`，因此不切到 `dify-dsl-refactor`。
+- 当前不是新建 DSL，所以也不是 `dify-dsl-authoring`。
+
+**预计联动的底座 skill**
+
+- `dify-dsl-foundations`
+- `dify-dsl-nodes`
+- `dify-dsl-quality`

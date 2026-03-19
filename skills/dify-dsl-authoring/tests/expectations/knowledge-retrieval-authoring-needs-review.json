@@ -1,0 +1,17 @@
+{
+  "ordered_markers": [
+    "模式判断",
+    "模板选择",
+    "节点清单",
+    "连边清单",
+    "字段检查表",
+    "DSL 草稿",
+    "后续建议"
+  ],
+  "must_contain_all": [
+    "RAG 问答模板",
+    "knowledge-retrieval",
+    "dataset_ids",
+    "建议下一步进入 `dify-dsl-subagent-review`"
+  ]
+}

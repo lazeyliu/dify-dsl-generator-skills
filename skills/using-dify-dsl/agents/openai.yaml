@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dify DSL 总入口"
+  short_description: "识别意图并路由到正确的 Dify DSL skill"
+  default_prompt: "使用 $using-dify-dsl 先判断这是不是 Dify DSL 任务，识别用户意图和权限边界，再把请求路由到合适的下游 skill；如果目标仍模糊，先进入 dify-dsl-brainstorming；如果根本不是 Dify DSL 任务，明确说明不进入本技能包。"
+
+policy:
+  allow_implicit_invocation: true

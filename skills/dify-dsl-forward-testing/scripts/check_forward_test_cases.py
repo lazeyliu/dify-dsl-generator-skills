@@ -29,6 +29,8 @@ CANONICAL_ROUTES = (
 )
 
 ENTRY_SKILLS = (
+    "skills/using-dify-dsl/SKILL.md",
+    "skills/dify-dsl-subagent-review/SKILL.md",
     "skills/dify-dsl-brainstorming/SKILL.md",
     "skills/dify-dsl-authoring/SKILL.md",
     "skills/dify-dsl-review/SKILL.md",
@@ -83,7 +85,8 @@ def validate_case(repo_root: Path, case_dir: Path) -> tuple[list[str], dict]:
     oracle = load_json(oracle_path)
     goal = oracle.get("goal")
     entry_skill = oracle.get("entry_skill")
-    expected_routes = oracle.get("expected_routes") or []
+    raw_expected_routes = oracle.get("expected_routes")
+    allow_empty_routes = bool(oracle.get("allow_empty_routes"))
 
     if not goal:
         errors.append(f"{oracle_path}: 缺少 goal")
@@ -91,8 +94,16 @@ def validate_case(repo_root: Path, case_dir: Path) -> tuple[list[str], dict]:
         errors.append(f"{oracle_path}: 缺少 entry_skill")
     elif entry_skill not in ENTRY_SKILLS:
         errors.append(f"{oracle_path}: entry_skill 非法 -> {entry_skill}")
-    if not isinstance(expected_routes, list) or not expected_routes:
-        errors.append(f"{oracle_path}: expected_routes 必须是非空数组")
+    if raw_expected_routes is None:
+        errors.append(f"{oracle_path}: 缺少 expected_routes")
+        expected_routes = []
+    elif not isinstance(raw_expected_routes, list):
+        errors.append(f"{oracle_path}: expected_routes 必须是数组")
+        expected_routes = []
+    else:
+        expected_routes = raw_expected_routes
+    if not expected_routes and not allow_empty_routes:
+        errors.append(f"{oracle_path}: expected_routes 必须是非空数组；如需空路由请显式设置 allow_empty_routes=true")
 
     for route in expected_routes:
         if route not in CANONICAL_ROUTES:

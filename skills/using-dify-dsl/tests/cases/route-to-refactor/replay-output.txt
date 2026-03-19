@@ -1,0 +1,23 @@
+**当前任务分类**
+
+- 这是一个已有 DSL 的修复任务，目标是给出最小修复路径和修改后的 DSL 文本。
+
+**权限边界**
+
+- 当前允许输出修改方案和修复后的 DSL 文本，但不要求直接改磁盘文件。
+
+**主路由**
+
+- 主路由是 `dify-dsl-refactor`。
+
+**为什么不是其他 skill**
+
+- 不是 `dify-dsl-brainstorming`：目标和修改意图已经明确。
+- 不是 `dify-dsl-authoring`：当前不是从零新建 DSL。
+- 不是 `dify-dsl-review`：用户不只要只读结论，而是明确要求修复方案和修改结果。
+
+**预计联动的底座 skill**
+
+- `dify-dsl-foundations`
+- `dify-dsl-nodes`
+- `dify-dsl-quality`

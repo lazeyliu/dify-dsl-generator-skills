@@ -1,0 +1,8 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/route-to-authoring
+需求说明: 帮我新建一个 Dify workflow。用户输入 URL，系统请求该地址，解析返回 JSON，并输出 `status_code` 和 `parsed_data`。我现在只要文本 DSL 草稿，不改磁盘文件。
+参考样本: tests/fixtures/dsl/template-http-workflow.yml
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再决定主路由；不要直接修改文件；结束时必须说明主路由，以及为什么不是 brainstorming / review / refactor。

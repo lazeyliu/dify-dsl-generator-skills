@@ -20,6 +20,27 @@ from fast_test_dsl import analyze_dsl, load_yaml_via_ruby
 
 
 PROMPT_TEMPLATES = {
+    "router": """使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: {case_dir}
+需求说明: <在这里写真实需求>
+目标文件: {target}
+旧基线: {baseline}
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再说明主路由，以及为什么不是最接近的另外 1 到 2 个 skill。
+如果当前需求仍模糊，不要直接生成或修改 DSL。
+如果确认它根本不是 Dify DSL 任务，明确写出“不进入本技能包”。
+""",
+    "subagent-review": """使用 $dify-dsl-subagent-review 执行这次 forward-test。
+
+工作目录: {case_dir}
+目标文件: {target}
+旧基线: {baseline}
+
+这是一个真实 Dify DSL 复核编排任务，不是问答。
+约束：只读；不要修改文件；先选择本轮复核模式，并说明为什么不是最接近的另外 1 到 2 个模式；如果平台和授权允许，按选定模式组织子代理；如果不允许，按规则退化，并明确写出 `未做独立复核`；只有在存在冲突或当前任务需要最终门禁归并时，才启用上线检查复核器。
+""",
     "brainstorming": """使用 $dify-dsl-brainstorming 执行这次 forward-test。
 
 工作目录: {case_dir}
@@ -103,6 +124,8 @@ PROMPT_TEMPLATES = {
 
 
 ENTRY_SKILL_BY_GOAL = {
+    "router": "skills/using-dify-dsl/SKILL.md",
+    "subagent-review": "skills/dify-dsl-subagent-review/SKILL.md",
     "brainstorming": "skills/dify-dsl-brainstorming/SKILL.md",
     "authoring": "skills/dify-dsl-authoring/SKILL.md",
     "review": "skills/dify-dsl-review/SKILL.md",

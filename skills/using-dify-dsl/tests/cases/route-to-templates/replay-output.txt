@@ -1,0 +1,22 @@
+**当前任务分类**
+
+- 这是一个 Dify DSL 模板选型任务，当前目标只是先找最接近的模板骨架，不进入 DSL 正文。
+
+**权限边界**
+
+- 当前是只读边界，不要求改文件，也不要求生成 DSL 草稿。
+
+**主路由**
+
+- 主路由是 `dify-dsl-templates`。
+
+**为什么不是其他 skill**
+
+- 不是 `dify-dsl-brainstorming`：目标已经明确，不是先澄清未知项。
+- 不是 `dify-dsl-authoring`：当前不是要直接生成 DSL 草稿。
+- 不是 `dify-dsl-governance`：当前不是在做交付门禁或发布判断。
+
+**预计联动的底座 skill**
+
+- `dify-dsl-foundations`
+- `dify-dsl-templates`

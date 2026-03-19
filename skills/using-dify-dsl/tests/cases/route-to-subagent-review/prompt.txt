@@ -1,0 +1,8 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/route-to-subagent-review
+目标文件: tests/fixtures/dsl/min-advanced-chat.yml
+需求说明: 这是一份现有 Dify chatflow。我现在不是要你直接修它，而是想组织 3 个只读子代理做独立复核，并在必要时归并成一个统一结论。
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再决定主路由；结束时必须说明主路由，以及为什么不是 review / governance / refactor。

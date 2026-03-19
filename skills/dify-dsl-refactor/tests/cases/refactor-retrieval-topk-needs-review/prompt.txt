@@ -1,0 +1,8 @@
+使用 $dify-dsl-refactor 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-refactor/tests/cases/refactor-retrieval-topk-needs-review
+目标文件: tests/fixtures/dsl/knowledge-retrieval-chatflow.yml
+需求说明: 这是一份已有 Dify 检索问答 chatflow。请把知识检索的 `top_k` 从 `3` 提高到 `5`，保持其它结构不变；不要改磁盘文件，但请在最后明确说明，这种修改后是否建议进入多方独立复核。
+
+这是一个真实 DSL 修复 / 重构任务，不是问答。
+约束：允许给出修改后的 DSL，但不要修改文件；先解释问题归因和最小修复路径，再给修改结果和剩余风险；最后明确说明是否建议进入 `dify-dsl-subagent-review` 以及原因。

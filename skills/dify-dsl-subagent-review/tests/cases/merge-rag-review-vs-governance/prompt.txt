@@ -1,0 +1,8 @@
+使用 $dify-dsl-subagent-review 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-subagent-review/tests/cases/merge-rag-review-vs-governance
+目标文件: tests/fixtures/dsl/knowledge-retrieval-chatflow.yml
+需求说明: 这是一份已有 Dify RAG 问答 chatflow。我希望你组织多方只读复核，并明确处理一种常见冲突：结构与字段层面看起来还能继续评估，但发布门禁层面因为独立复核、观测字段和回归证据不足而不能直接放行。请给统一结论。
+
+这是一个真实 Dify DSL 复核编排任务，不是问答。
+约束：只读；不要修改文件；如果平台允许，优先用 3 个只读子代理，再按需启用上线检查复核器做冲突归并。

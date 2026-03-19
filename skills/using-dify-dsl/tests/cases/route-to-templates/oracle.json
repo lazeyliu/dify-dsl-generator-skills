@@ -1,0 +1,15 @@
+{
+  "goal": "router",
+  "entry_skill": "skills/using-dify-dsl/SKILL.md",
+  "target": null,
+  "baseline": null,
+  "expected_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-templates/SKILL.md"
+  ],
+  "expected_read_only": true,
+  "replay_output_file": "replay-output.txt",
+  "expectation_files": [
+    "skills/using-dify-dsl/tests/expectations/route-to-templates.json"
+  ]
+}

@@ -1,0 +1,25 @@
+**当前任务分类**
+
+- 这是一个已有 DSL 的多方独立复核编排任务。
+
+**权限边界**
+
+- 当前是只读边界，不要求修改文件，但明确要求组织子代理复核与统一结论。
+
+**主路由**
+
+- 主路由是 `dify-dsl-subagent-review`。
+
+**为什么不是其他 skill**
+
+- 不是 `dify-dsl-review`：当前不只是单线程只读审查，而是明确要求多方独立复核编排。
+- 不是 `dify-dsl-governance`：当前还没有多方复核结果，不能一上来只做门禁归并。
+- 不是 `dify-dsl-refactor`：用户没有要求直接修复或重构。
+
+**预计联动的底座 skill**
+
+- `dify-dsl-foundations`
+- `dify-dsl-nodes`
+- `dify-dsl-templates`
+- `dify-dsl-quality`
+- `dify-dsl-governance`

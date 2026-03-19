@@ -1,0 +1,23 @@
+**当前任务分类**
+
+- 这是一个已有 DSL 的只读审查任务，重点是结构分析、风险分级和导入判断。
+
+**权限边界**
+
+- 当前是只读边界，不允许直接修改文件，也不应该输出修复后的 DSL。
+
+**主路由**
+
+- 主路由是 `dify-dsl-review`。
+
+**为什么不是其他 skill**
+
+- 不是 `dify-dsl-brainstorming`：目标已经明确，不需要先做需求澄清。
+- 不是 `dify-dsl-authoring`：当前不是新建 DSL。
+- 不是 `dify-dsl-refactor`：用户没有给出修改授权，只要求只读结论。
+
+**预计联动的底座 skill**
+
+- `dify-dsl-foundations`
+- `dify-dsl-nodes`
+- `dify-dsl-quality`

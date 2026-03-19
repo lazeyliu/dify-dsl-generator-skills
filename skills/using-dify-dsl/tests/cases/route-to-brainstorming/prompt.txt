@@ -1,0 +1,8 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/route-to-brainstorming
+需求说明: 我想做一个 Dify workflow，让用户输入 URL，然后系统请求该地址并解析返回 JSON。不过我还没想好要不要带认证、失败重试、以及返回体不是 JSON 时该怎么处理。先别写 YAML，先帮我判断下一步应该进入哪个 skill。
+参考样本: tests/fixtures/dsl/template-http-workflow.yml
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再决定主路由；不要直接生成 DSL；结束时必须说明主路由，以及为什么不是 authoring / review / refactor。

@@ -124,15 +124,15 @@ def validate_skill(skill_root: Path) -> tuple[list[str], list[str]]:
         warnings.append(f"{skill_path}: 行数为 {len(skill_lines)}，建议控制在 500 行以内")
 
     openai_yaml_path = skill_root / "agents" / "openai.yaml"
+    skill_name = frontmatter.get("name")
     if openai_yaml_path.exists():
         openai_yaml, yaml_errors = parse_openai_yaml(openai_yaml_path)
         errors.extend(yaml_errors)
 
-        skill_name = frontmatter.get("name")
         default_prompt = openai_yaml.get("interface.default_prompt", "")
         if skill_name and f"${skill_name}" not in default_prompt:
             errors.append(f"{openai_yaml_path}: interface.default_prompt 需要显式包含 ${skill_name}")
-    else:
+    elif skill_name and skill_name.startswith("using-"):
         warnings.append(f"{skill_root}: 未提供 agents/openai.yaml，将只做通用结构校验")
 
     errors.extend(validate_links(skill_root))

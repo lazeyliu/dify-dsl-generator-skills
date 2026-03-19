@@ -1,0 +1,8 @@
+使用 $dify-dsl-authoring 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-authoring/tests/cases/knowledge-retrieval-authoring-needs-review
+需求说明: 帮我新建一个 Dify `advanced-chat` 检索问答链路，用户提问后先走知识检索，再让 LLM 基于检索结果回答。当前只要文本 DSL 草稿，不改文件；但请你在草稿后明确说明，这种链路是否建议下一步进入多方独立复核。
+参考样本: tests/fixtures/dsl/knowledge-retrieval-chatflow.yml
+
+这是一个真实 DSL 生成任务，不是问答。
+约束：不要修改文件；先给模式判断、模板选择、节点清单、连边清单和字段检查表，再给 DSL 草稿；最后明确说明是否建议进入 `dify-dsl-subagent-review` 以及原因。

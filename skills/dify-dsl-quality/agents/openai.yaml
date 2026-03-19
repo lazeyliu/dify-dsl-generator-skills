@@ -1,7 +1,0 @@
-interface:
-  display_name: "Dify DSL 质量"
-  short_description: "审查、修复、优化与复核分工"
-  default_prompt: "使用 $dify-dsl-quality 收敛这份 Dify DSL 的问题分级、修复策略、优化策略和复核分工。"
-
-policy:
-  allow_implicit_invocation: false

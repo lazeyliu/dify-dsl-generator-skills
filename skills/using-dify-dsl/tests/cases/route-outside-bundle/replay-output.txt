@@ -1,0 +1,15 @@
+**当前任务分类**
+
+- 这不是 Dify DSL 任务，而是普通 Python 编程需求。
+
+**处理结论**
+
+- 不进入本技能包。
+
+**原因**
+
+- 当前需求与 `workflow`、`advanced-chat`、`rag_pipeline`、模板选型、DSL 审查、DSL 修复或交付判断都无关。
+
+**后续动作**
+
+- 不路由到任何 `dify-dsl-*` 下游 skill。

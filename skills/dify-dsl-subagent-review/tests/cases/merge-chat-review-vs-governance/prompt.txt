@@ -1,0 +1,8 @@
+使用 $dify-dsl-subagent-review 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-subagent-review/tests/cases/merge-chat-review-vs-governance
+目标文件: tests/fixtures/dsl/min-advanced-chat.yml
+需求说明: 这是一份极简 Dify `advanced-chat` 样本。我希望你组织多方只读复核，并处理一种常见冲突：结构闭环成立，但交付门禁仍然因为上下文消费、观测字段和独立复核不足而不放行。请给统一结论。
+
+这是一个真实 Dify DSL 复核编排任务，不是问答。
+约束：只读；不要修改文件；如果平台允许，优先用 3 个只读子代理，再按需启用上线检查复核器做冲突归并。

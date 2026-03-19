@@ -1,0 +1,7 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/route-to-templates
+需求说明: 我现在不需要你生成 DSL，只想先判断“用户输入购车需求，系统做分类、抽取参数、查询知识，再返回结果”这个需求最适合从哪个 Dify 模板骨架起手。
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再决定主路由；不要直接生成 DSL；结束时必须说明主路由，以及为什么不是 brainstorming / authoring / governance。

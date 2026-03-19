@@ -1,0 +1,26 @@
+{
+  "goal": "subagent-review",
+  "entry_skill": "skills/dify-dsl-subagent-review/SKILL.md",
+  "target": "tests/fixtures/dsl/min-advanced-chat.yml",
+  "baseline": null,
+  "expected_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md",
+    "skills/dify-dsl-templates/SKILL.md",
+    "skills/dify-dsl-quality/SKILL.md",
+    "skills/dify-dsl-governance/SKILL.md"
+  ],
+  "expected_static_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md",
+    "skills/dify-dsl-templates/SKILL.md",
+    "skills/dify-dsl-quality/SKILL.md",
+    "skills/dify-dsl-governance/SKILL.md"
+  ],
+  "expected_read_only": true,
+  "expected_lint_status": "clean",
+  "replay_output_file": "replay-output.txt",
+  "expectation_files": [
+    "skills/dify-dsl-subagent-review/tests/expectations/merge-chat-review-vs-governance.json"
+  ]
+}

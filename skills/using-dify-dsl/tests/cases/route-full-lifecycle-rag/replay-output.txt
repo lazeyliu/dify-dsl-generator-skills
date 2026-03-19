@@ -1,0 +1,31 @@
+**当前任务分类**
+
+- 这是一个完整主链路规划任务：先生成 DSL 草稿，再做多方独立复核，最后再做交付判断。
+
+**权限边界**
+
+- 当前只要求给出路线规划和后续链路，不要求直接落盘修改文件。
+
+**主路由**
+
+- 主路由是 `dify-dsl-authoring`。
+
+**为什么不是其他 skill**
+
+- 不是 `dify-dsl-review`：当前还没有现成草稿可供只读审查。
+- 不是 `dify-dsl-governance`：当前还没有复核结果，不能一上来只做门禁判断。
+- 不是 `dify-dsl-refactor`：当前不是修改已有 DSL。
+
+**完整后续链路**
+
+- 第一步：`dify-dsl-authoring`
+- 第二步：`dify-dsl-subagent-review`
+- 第三步：`dify-dsl-governance`
+
+**预计联动的底座 skill**
+
+- `dify-dsl-foundations`
+- `dify-dsl-nodes`
+- `dify-dsl-templates`
+- `dify-dsl-quality`
+- `dify-dsl-governance`

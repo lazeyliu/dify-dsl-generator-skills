@@ -1,0 +1,8 @@
+使用 $dify-dsl-subagent-review 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-subagent-review/tests/cases/orchestrate-readonly-review
+目标文件: tests/fixtures/dsl/broken-selector.yml
+需求说明: 这是一份已有 Dify workflow。我不要直接修它，而是希望你组织一次多方只读独立复核：字段、链路、提示词与输入输出约定分别检查，再给统一结论。
+
+这是一个真实 Dify DSL 复核编排任务，不是问答。
+约束：只读；不要修改文件；如果平台允许，优先用 3 个只读子代理；如果不允许，按规则退化并明确写出来。

@@ -1,0 +1,8 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/route-to-governance
+目标文件: tests/fixtures/dsl/min-advanced-chat.yml
+需求说明: 这是一份现有 Dify chatflow。我现在不需要你修它，只想判断它今天能不能交付给别的团队复用，重点看发布门禁、覆盖率缺口和最终结论。
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再决定主路由；不要改文件；结束时必须说明主路由，以及为什么不是 review / refactor / authoring。

@@ -1,0 +1,25 @@
+{
+  "goal": "router",
+  "entry_skill": "skills/using-dify-dsl/SKILL.md",
+  "target": "tests/fixtures/dsl/min-advanced-chat.yml",
+  "baseline": null,
+  "expected_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md",
+    "skills/dify-dsl-templates/SKILL.md",
+    "skills/dify-dsl-quality/SKILL.md",
+    "skills/dify-dsl-governance/SKILL.md"
+  ],
+  "expected_static_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md",
+    "skills/dify-dsl-templates/SKILL.md",
+    "skills/dify-dsl-quality/SKILL.md",
+    "skills/dify-dsl-governance/SKILL.md"
+  ],
+  "expected_read_only": true,
+  "replay_output_file": "replay-output.txt",
+  "expectation_files": [
+    "skills/using-dify-dsl/tests/expectations/route-to-governance.json"
+  ]
+}

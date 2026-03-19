@@ -1,0 +1,8 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/follow-explicit-review
+目标文件: tests/fixtures/dsl/broken-selector.yml
+需求说明: 我明确指定这次只用 `dify-dsl-review` 做只读审查，不要切去 refactor，也不要给修改后的 DSL。请只判断它是否明显不完整。
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再决定主路由；结束时必须说明主路由，以及为什么没有切到 refactor。

@@ -1,0 +1,8 @@
+使用 $dify-dsl-subagent-review 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-subagent-review/tests/cases/select-single-graph-review
+目标文件: tests/fixtures/dsl/broken-selector.yml
+需求说明: 这是一份很小的 workflow 样本。我现在主要只关心图闭环和 selector 是否悬空，不希望为了形式上的多方复核拉起一堆无关角色。请先选合适模式，再给统一结论。
+
+这是一个真实 Dify DSL 复核编排任务，不是问答。
+约束：只读；不要修改文件；先选合适的复核模式，再说明为什么。

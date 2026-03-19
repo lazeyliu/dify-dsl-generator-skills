@@ -1,0 +1,13 @@
+{
+  "goal": "router",
+  "entry_skill": "skills/using-dify-dsl/SKILL.md",
+  "target": null,
+  "baseline": null,
+  "expected_routes": [],
+  "allow_empty_routes": true,
+  "expected_read_only": true,
+  "replay_output_file": "replay-output.txt",
+  "expectation_files": [
+    "skills/using-dify-dsl/tests/expectations/route-outside-bundle.json"
+  ]
+}

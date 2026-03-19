@@ -1,0 +1,8 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/route-full-lifecycle-rag
+需求说明: 我想先生成一个 Dify `advanced-chat` 检索问答 DSL 草稿，草稿出来后再组织多方独立复核，最后根据复核结果判断能不能交付给别的团队复用。当前都不要改文件，先告诉我这条完整链路应该怎么走。
+参考样本: tests/fixtures/dsl/knowledge-retrieval-chatflow.yml
+
+这是一个真实 Dify DSL 路由任务，不是问答。
+约束：先判断任务类型和权限边界，再决定主路由；不要直接写文件；结束时必须说明主路由、为什么不是直接去 review / governance / refactor，以及后续完整链路。

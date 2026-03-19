@@ -1,7 +1,0 @@
-interface:
-  display_name: "Dify DSL 前向验证"
-  short_description: "用真实样本验证 skill 协作是否靠谱"
-  default_prompt: "使用 $dify-dsl-forward-testing 为 Dify DSL 技能准备或检查真实样本前向验证用例，避免泄漏预期答案。"
-
-policy:
-  allow_implicit_invocation: false

@@ -1,0 +1,15 @@
+{
+  "must_contain_all": [
+    "这不是 Dify DSL 任务",
+    "不进入本技能包",
+    "不路由到任何 `dify-dsl-*` 下游 skill"
+  ],
+  "must_not_contain": [
+    "主路由是 `dify-dsl-brainstorming`",
+    "主路由是 `dify-dsl-authoring`",
+    "主路由是 `dify-dsl-review`",
+    "主路由是 `dify-dsl-refactor`",
+    "主路由是 `dify-dsl-templates`",
+    "主路由是 `dify-dsl-governance`"
+  ]
+}

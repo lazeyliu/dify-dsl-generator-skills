@@ -1,0 +1,8 @@
+使用 $dify-dsl-subagent-review 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-subagent-review/tests/cases/select-serial-chat-review
+目标文件: tests/fixtures/dsl/min-advanced-chat.yml
+需求说明: 这是一份很小的 `advanced-chat` 样本。我希望你不要默认并行铺开，先确认结构和字段是否站得住，再决定是否继续往提示词与交付风险收敛，并给统一结论。
+
+这是一个真实 Dify DSL 复核编排任务，不是问答。
+约束：只读；不要修改文件；先选合适的复核模式，再说明为什么。

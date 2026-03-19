@@ -1,0 +1,15 @@
+{
+  "ordered_markers": [
+    "问题归因",
+    "最小修复路径",
+    "变更影响",
+    "修改后的 DSL",
+    "剩余风险",
+    "后续建议"
+  ],
+  "must_contain_all": [
+    "top_k: 5",
+    "multiple_retrieval_config",
+    "建议下一步进入 `dify-dsl-subagent-review`"
+  ]
+}

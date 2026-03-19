@@ -1,0 +1,8 @@
+使用 $dify-dsl-subagent-review 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-subagent-review/tests/cases/degrade-no-subagent
+目标文件: tests/fixtures/dsl/min-advanced-chat.yml
+需求说明: 这是一份已有 Dify chatflow。我希望你组织一次多方独立复核，但当前会话策略明确不允许自动拉起 subagent。请按规则退化，并给统一结论。
+
+这是一个真实 Dify DSL 复核编排任务，不是问答。
+约束：只读；不要修改文件；当前不允许自动拉起 subagent；如果因此不能完成独立复核，要明确写出来，并给降级后的结论。

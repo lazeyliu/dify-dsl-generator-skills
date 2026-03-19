@@ -28,6 +28,8 @@
   读 [review-checklist.md](review-checklist.md)。
 - “子代理该怎么分工、何时退化？”
   读 [subagent-review.md](subagent-review.md)。
+- “不要只看分工口径，直接帮我组织这轮多方复核。”
+  转去 [../../dify-dsl-subagent-review/SKILL.md](../../dify-dsl-subagent-review/SKILL.md)。
 - “当前有哪些正式角色文件可以直接拿来派发子代理？”
   读 [../agents/index.md](../agents/index.md)。
 - “真实样本的前向验证该怎么写提示词、怎么防止泄漏？”

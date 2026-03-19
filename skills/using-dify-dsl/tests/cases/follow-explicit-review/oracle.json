@@ -1,0 +1,25 @@
+{
+  "goal": "router",
+  "entry_skill": "skills/using-dify-dsl/SKILL.md",
+  "target": "tests/fixtures/dsl/broken-selector.yml",
+  "baseline": null,
+  "expected_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md",
+    "skills/dify-dsl-quality/SKILL.md"
+  ],
+  "expected_static_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md"
+  ],
+  "expected_read_only": true,
+  "expected_lint_status": "issues",
+  "expected_lint_error_codes": [
+    "edge_target_missing",
+    "selector_target_missing"
+  ],
+  "replay_output_file": "replay-output.txt",
+  "expectation_files": [
+    "skills/using-dify-dsl/tests/expectations/follow-explicit-review.json"
+  ]
+}

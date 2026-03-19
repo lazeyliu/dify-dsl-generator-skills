@@ -1,0 +1,12 @@
+{
+  "must_contain_all": [
+    "当前任务分类",
+    "权限边界",
+    "主路由是 `dify-dsl-governance`",
+    "dify-dsl-foundations",
+    "dify-dsl-nodes",
+    "dify-dsl-templates",
+    "dify-dsl-quality",
+    "dify-dsl-governance"
+  ]
+}

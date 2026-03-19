@@ -1,0 +1,8 @@
+使用 $dify-dsl-subagent-review 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-subagent-review/tests/cases/merge-release-readiness
+目标文件: tests/fixtures/dsl/min-advanced-chat.yml
+需求说明: 这是一份已有 Dify chatflow。我希望你组织字段、链路、提示词与输入输出约定三方复核；如果三方结论不足以直接给出发布判断，继续做上线前检查归并，再给统一结论。
+
+这是一个真实 Dify DSL 复核编排任务，不是问答。
+约束：只读；不要修改文件；如果平台允许，优先用 3 个只读子代理，再视需要启用上线检查复核器。

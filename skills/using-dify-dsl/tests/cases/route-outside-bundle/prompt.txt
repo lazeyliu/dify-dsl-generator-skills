@@ -1,0 +1,7 @@
+使用 $using-dify-dsl 执行这次 forward-test。
+
+工作目录: skills/using-dify-dsl/tests/cases/route-outside-bundle
+需求说明: 帮我写一个 Python `requests` 重试函数，要求支持指数退避和超时控制。
+
+这是一个真实路由任务，不是问答。
+约束：先判断这是不是 Dify DSL 任务，再决定是否需要进入本技能包的后续 skill。

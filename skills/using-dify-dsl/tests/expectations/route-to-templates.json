@@ -1,0 +1,9 @@
+{
+  "must_contain_all": [
+    "当前任务分类",
+    "权限边界",
+    "主路由是 `dify-dsl-templates`",
+    "dify-dsl-foundations",
+    "dify-dsl-templates"
+  ]
+}

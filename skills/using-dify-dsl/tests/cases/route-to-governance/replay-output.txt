@@ -1,0 +1,25 @@
+**当前任务分类**
+
+- 这是一个已有 Dify DSL 的交付判断任务，重点是发布门禁、覆盖率缺口和最终能否交付。
+
+**权限边界**
+
+- 当前是只读边界，不要求修改文件，也不要求给修复后的 DSL。
+
+**主路由**
+
+- 主路由是 `dify-dsl-governance`。
+
+**为什么不是其他 skill**
+
+- 不是 `dify-dsl-review`：当前主要问题不是一般结构排查，而是交付判断和门禁结论。
+- 不是 `dify-dsl-refactor`：用户没有要求修复或重构。
+- 不是 `dify-dsl-authoring`：当前不是新建 DSL。
+
+**预计联动的底座 skill**
+
+- `dify-dsl-foundations`
+- `dify-dsl-nodes`
+- `dify-dsl-templates`
+- `dify-dsl-quality`
+- `dify-dsl-governance`

@@ -37,8 +37,17 @@
 
 ## 技能组成
 
+### 总入口 skill
+
+- [using-dify-dsl](skills/using-dify-dsl/SKILL.md)  
+  处理意图识别、权限边界判断和主 skill 路由；当你把整个仓库作为一个技能包安装时，优先从这里进入。
+
+当前只有这个总入口保留 `agents/openai.yaml`；其余 `dify-dsl-*` skill 仍会通过各自的 `SKILL.md` 被发现。
+
 ### 入口 skill
 
+- [dify-dsl-subagent-review](skills/dify-dsl-subagent-review/SKILL.md)  
+  处理多方独立复核编排、子代理退化和冲突归并的场景。
 - [dify-dsl-brainstorming](skills/dify-dsl-brainstorming/SKILL.md)  
   处理需求不清、未知项未收敛、需要先比较方案的场景。
 - [dify-dsl-authoring](skills/dify-dsl-authoring/SKILL.md)  
@@ -66,26 +75,79 @@
 - [dify-dsl-forward-testing](skills/dify-dsl-forward-testing/SKILL.md)  
   用真实样本、真实 prompt 和 replay 断言验证 skill 是否真的按预期协作。
 
+### 子代理复核总览
+
+- [Dify DSL 子代理复核总览](docs/dify-dsl-subagent-review-overview.zh-CN.md)  
+  一页看懂什么时候进入 `dify-dsl-subagent-review`、四种复核模式、角色分工和当前样本覆盖。
+
 ## 怎么使用这个项目
 
-最简单的用法不是“看完整个仓库”，而是先按目标选入口 skill：
+如果你把整个仓库当成一个技能包安装，最简单的用法是先调用 [using-dify-dsl](skills/using-dify-dsl/SKILL.md)，让它根据用户意图自动判断应该进入哪个下游 skill。
+
+### 主路径速览
+
+<!-- BEGIN ROUTE_MATRIX -->
+| 用户目标 | 推荐入口 | 常见下一步 |
+| --- | --- | --- |
+| 需求还没收敛 | `using-dify-dsl` 或 `dify-dsl-brainstorming` | `dify-dsl-authoring / review / refactor` |
+| 新建 DSL | `using-dify-dsl` 或 `dify-dsl-authoring` | 高复杂度时进入 `dify-dsl-subagent-review` |
+| 只读审查已有 DSL | `using-dify-dsl` 或 `dify-dsl-review` | 需要多方复核时进入 `dify-dsl-subagent-review` |
+| 修改已有 DSL | `using-dify-dsl` 或 `dify-dsl-refactor` | 修改后需要独立复核时进入 `dify-dsl-subagent-review` |
+| 只想选模板 | `using-dify-dsl` 或 `dify-dsl-templates` | 如需正文再进入 `dify-dsl-authoring` |
+| 只想判断能不能交付 | `using-dify-dsl` 或 `dify-dsl-governance` | 如果用户同时明确要求多方独立复核或冲突归并，再进入 `dify-dsl-subagent-review` |
+| 明确要组织多方复核 | `using-dify-dsl` 或 `dify-dsl-subagent-review` | 按并行 / 串行 / 单子代理 / 无子代理退化 |
+<!-- END ROUTE_MATRIX -->
+
+可以把主路径理解成这一条：
+
+<!-- BEGIN MAIN_PATH -->
+```text
+using-dify-dsl
+-> brainstorming / authoring / review / refactor / templates / governance / subagent-review
+-> 必要时再进入 subagent-review 或 governance
+```
+<!-- END MAIN_PATH -->
+
+如果你已经明确知道目标，也可以直接点名入口 skill：
 
 - 需求还不清楚：先看 [dify-dsl-brainstorming](skills/dify-dsl-brainstorming/SKILL.md)
 - 要新建 DSL：先看 [dify-dsl-authoring](skills/dify-dsl-authoring/SKILL.md)
 - 只想只读审查 DSL：先看 [dify-dsl-review](skills/dify-dsl-review/SKILL.md)
 - 要修改已有 DSL：先看 [dify-dsl-refactor](skills/dify-dsl-refactor/SKILL.md)
+- 要组织多方独立复核并归并结论：先看 [dify-dsl-subagent-review](skills/dify-dsl-subagent-review/SKILL.md)
 - 要验证 skill 自身是否可靠：先看 [dify-dsl-forward-testing](skills/dify-dsl-forward-testing/SKILL.md)
+
+## 安装到 Codex
+
+推荐把整个仓库作为一个技能包安装，而不是把每个 skill 分散挂到 `~/.codex/skills/` 顶层。
+
+详细步骤见 [.codex/INSTALL.md](.codex/INSTALL.md)。
+
+如果你已经是散装安装，也可以直接运行：
+
+```bash
+bash scripts/install_codex_bundle.sh
+```
+
+即使已经按 bundle 安装，当前 Codex 版本的技能面板仍可能列出多个 `dify-dsl-*` 子 skill；把 `using-dify-dsl` 视为推荐入口，不要把它当成“唯一可见卡片”。
 
 ## 仓库结构
 
 ```text
 tee/
+├── .codex/INSTALL.md
 ├── .github/workflows/validate.yml
+├── docs/
+│   ├── dify-dsl-subagent-review-overview.md
+│   └── dify-dsl-subagent-review-overview.zh-CN.md
 ├── scripts/
+│   ├── install_codex_bundle.sh
 │   ├── quick_validate.py
 │   ├── validate_skill_repo.py
 │   └── validate_forward_testing.py
 ├── skills/
+│   ├── using-dify-dsl/
+│   ├── dify-dsl-subagent-review/
 │   ├── dify-dsl-brainstorming/
 │   ├── dify-dsl-authoring/
 │   ├── dify-dsl-review/
@@ -155,8 +217,10 @@ GitHub Actions 工作流在 [validate.yml](.github/workflows/validate.yml)。
 
 ## 维护约定
 
-- 新 skill 统一放到 `skills/dify-dsl-*`
+- 总入口 skill 固定为 `skills/using-dify-dsl/`
+- 领域 skill 统一放到 `skills/dify-dsl-*`
 - 共享 fixture 统一放到 `tests/fixtures/dsl/`
+- 如果改了主路径速览或一屏主路径，运行 `python3 scripts/route_matrix_docs.py --write` 回写文档
 - 新增或修改 case 时，尽量同时补：
   - `oracle.json`
   - `replay-output.txt`

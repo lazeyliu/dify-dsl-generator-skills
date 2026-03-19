@@ -1,7 +1,0 @@
-interface:
-  display_name: "Dify DSL 底座"
-  short_description: "模式判断、路由、字段与校验口径"
-  default_prompt: "使用 $dify-dsl-foundations 先收敛 Dify DSL 的模式判断、任务路由、selector 和字段口径，再进入后续技能。"
-
-policy:
-  allow_implicit_invocation: false

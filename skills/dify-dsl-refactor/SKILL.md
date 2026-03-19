@@ -13,6 +13,7 @@ description: 修复、优化与重构现有 Dify Workflow、Chatflow、RAG Pipel
 2. 节点或容器细节需要补证时，读 [../dify-dsl-nodes/SKILL.md](../dify-dsl-nodes/SKILL.md)。
 3. 需要模板重排或骨架替换时，读 [../dify-dsl-templates/SKILL.md](../dify-dsl-templates/SKILL.md)。
 4. 需要变更影响、观测字段或上线前检查时，读 [../dify-dsl-governance/SKILL.md](../dify-dsl-governance/SKILL.md)。
+5. 如果修改后需要正式组织多方独立复核，转去 [../dify-dsl-subagent-review/SKILL.md](../dify-dsl-subagent-review/SKILL.md)。
 
 ## 最低输出
 
@@ -21,6 +22,7 @@ description: 修复、优化与重构现有 Dify Workflow、Chatflow、RAG Pipel
 3. 变更影响摘要
 4. 修改后的 DSL
 5. 仍待确认风险
+6. 如果当前修改已经进入高风险或高复杂度场景，说明是否建议下一步进入 [../dify-dsl-subagent-review/SKILL.md](../dify-dsl-subagent-review/SKILL.md)
 
 ## 约束
 
