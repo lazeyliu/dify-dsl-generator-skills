@@ -1,0 +1,25 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的 if-else 分支链路，但没有显式 false/default 分支。
+
+**节点清单**
+- `start_node`
+- `if_node`
+- `end_true`
+
+**连边清单**
+- `start_node -> if_node`
+- `if_node(true) -> end_true`
+
+**字段检查表**
+- `cases[*].case_id` 为 `true`
+- true 分支存在
+- false/default 分支缺失
+
+**风险分级**
+- 阻塞项: `if_else_false_missing`
+- 高风险项: 无
+- 中风险项: 无
+- 优化项: 无
+
+**最终结论**
+- `明显不完整`

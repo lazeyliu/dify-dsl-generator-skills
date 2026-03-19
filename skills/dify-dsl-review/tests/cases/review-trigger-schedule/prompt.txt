@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 trigger-schedule 的 Dify workflow。
+目标文件: tests/fixtures/dsl/trigger-schedule-http-workflow.yml
+
+重点检查 mode、cron_expression、timezone 和下游定时链路。不要修改文件。

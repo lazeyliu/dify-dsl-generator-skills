@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 trigger-webhook 的 Dify workflow。
+目标文件: tests/fixtures/dsl/trigger-webhook-code-workflow.yml
+
+重点检查请求方法、content_type、body 结构和是否误并列普通 start。不要修改文件。

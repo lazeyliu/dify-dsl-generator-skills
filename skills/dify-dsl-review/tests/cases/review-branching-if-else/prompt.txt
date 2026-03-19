@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 if-else 的 Dify workflow。
+目标文件: tests/fixtures/dsl/branching-if-else-workflow.yml
+
+重点检查 `case_id`、边句柄、false 分支和终点闭环。不要修改文件。

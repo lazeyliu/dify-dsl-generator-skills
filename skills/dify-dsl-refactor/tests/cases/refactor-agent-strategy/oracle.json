@@ -1,0 +1,20 @@
+{
+  "goal": "refactor",
+  "entry_skill": "skills/dify-dsl-refactor/SKILL.md",
+  "target": "tests/fixtures/dsl/agent-tool-workflow.yml",
+  "baseline": null,
+  "expected_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md",
+    "skills/dify-dsl-quality/SKILL.md"
+  ],
+  "expected_static_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md"
+  ],
+  "expected_read_only": false,
+  "replay_output_file": "replay-output.txt",
+  "expectation_files": [
+    "skills/dify-dsl-refactor/tests/expectations/refactor-agent-strategy.json"
+  ]
+}

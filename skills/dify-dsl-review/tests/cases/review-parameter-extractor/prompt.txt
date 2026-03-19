@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 parameter-extractor 的 Dify workflow。
+目标文件: tests/fixtures/dsl/parameter-extractor-routing-workflow.yml
+
+重点检查 `parameters[*]`、`reasoning_mode` 和终点输出选择器。不要修改文件。

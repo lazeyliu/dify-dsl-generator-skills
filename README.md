@@ -1,225 +1,169 @@
-# dify-dsl-generator
+# tee
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[简体中文](README.zh-CN.md)
 
-A general-purpose agent skill for generating, reviewing, analyzing, optimizing, and repairing Dify DSLs, including:
+`tee` is a skill repository for working with `Dify DSL`.
 
-- `kind: app` with `workflow`
-- `kind: app` with `advanced-chat`
+It is not an application repository and it is not just a template collection. It provides a structured set of skills, references, fixtures, and validation scripts for AI agents that need to design, generate, review, refactor, and validate `Dify Workflow`, `Chatflow`, and `RAG Pipeline` DSL.
+
+## What This Project Is
+
+This project treats `Dify DSL` as an orchestration system that needs to be designed, generated, reviewed, repaired, refactored, and validated.
+
+Its core value comes from three things:
+
+- splitting DSL capabilities into focused, composable skills instead of one large prompt
+- separating node knowledge, templates, review rules, and governance rules into reusable foundations
+- turning “the agent seems capable” into something testable with fixtures, cases, replays, reports, and diffs
+
+## What Problems It Solves
+
+The hard part of working with Dify DSL is usually not “writing YAML.” The real problems are:
+
+- unclear mode selection across `workflow`, `advanced-chat`, and `rag_pipeline`
+- fragile node fields, selectors, edges, and container closure
+- mixing templates, node knowledge, review rules, and delivery judgment in the same context
+- conclusions without evidence, replay coverage, or regression checks
+
+This repository exists to solve those problems.
+
+## Supported Scope
+
+The current skill set covers:
+
+- `kind: app` + `app.mode: workflow`
+- `kind: app` + `app.mode: advanced-chat`
 - `kind: rag_pipeline`
 
-The goal of this skill is not just to produce a YAML file, but to treat a Dify DSL as a system that can be reviewed, tuned, validated, and governed.
+## Skill Set
 
-Its core workflow is platform-neutral:
+### Entry Skills
 
-- `SKILL.md` and `references/` are the portable core
-- `agents/openai.yaml` is the current adapter metadata for OpenAI / Codex
-- other agent systems can still reuse the core workflow even if they ignore this adapter file
+- [dify-dsl-brainstorming](skills/dify-dsl-brainstorming/SKILL.md)  
+  Use when requirements are still unclear and unknowns need to be resolved before moving forward.
+- [dify-dsl-authoring](skills/dify-dsl-authoring/SKILL.md)  
+  Use to generate a DSL draft from clear requirements.
+- [dify-dsl-review](skills/dify-dsl-review/SKILL.md)  
+  Use for read-only review, risk grading, import judgment, and release conclusions.
+- [dify-dsl-refactor](skills/dify-dsl-refactor/SKILL.md)  
+  Use for minimal fixes, optimization, and structural refactoring.
 
-## Use Cases
+### Foundation Skills
 
-This skill is intended for tasks such as:
+- [dify-dsl-foundations](skills/dify-dsl-foundations/SKILL.md)  
+  Mode selection, routing, field conventions, output contracts, and validation contracts.
+- [dify-dsl-nodes](skills/dify-dsl-nodes/SKILL.md)  
+  Node knowledge, node combinations, container rules, and selector rules.
+- [dify-dsl-templates](skills/dify-dsl-templates/SKILL.md)  
+  Template library, skeletons, validation status, and variants.
+- [dify-dsl-quality](skills/dify-dsl-quality/SKILL.md)  
+  Review, repair, optimization, and reviewer role split.
+- [dify-dsl-governance](skills/dify-dsl-governance/SKILL.md)  
+  Release judgment, change impact, coverage, observability, and capability contracts.
 
-- creating a new Dify DSL from scratch
-- modifying an existing DSL
-- reviewing a DSL in read-only mode without changing files
-- brainstorming and analyzing the current DSL before making changes
-- producing structured review reports, release gates, and tuning suggestions
+### Validation Skill
 
-## Core Capabilities
+- [dify-dsl-forward-testing](skills/dify-dsl-forward-testing/SKILL.md)  
+  Use real fixtures, real prompts, replay outputs, and reports to validate that the skill system actually works.
 
-- DSL generation: choose mode, choose template, fill required fields, selectors, and failure paths
-- DSL repair: fix structural issues, compatibility issues, and graph closure problems
-- DSL review: syntax checks, model/entity checks, independent review, and graded review
-- DSL analysis: read-only analysis of the current DSL with risks, findings, and optimization suggestions
-- DSL optimization: improve accuracy, stability, observability, and orchestration flexibility
-- DSL governance: support change-impact review, coverage matrix, release gates, observability contracts, and capability contracts
+## How To Use This Repository
 
-## Invocation
+Pick the entry skill based on the goal:
 
-In a Codex or compatible agent environment that supports explicit skill-style invocation, use:
+- requirements unclear: start with [dify-dsl-brainstorming](skills/dify-dsl-brainstorming/SKILL.md)
+- create a new DSL: start with [dify-dsl-authoring](skills/dify-dsl-authoring/SKILL.md)
+- review an existing DSL read-only: start with [dify-dsl-review](skills/dify-dsl-review/SKILL.md)
+- modify an existing DSL: start with [dify-dsl-refactor](skills/dify-dsl-refactor/SKILL.md)
+- validate the skills themselves: start with [dify-dsl-forward-testing](skills/dify-dsl-forward-testing/SKILL.md)
 
-```text
-Use $dify-dsl-generator to review this Dify DSL and provide structured recommendations.
-```
-
-Typical uses include:
-
-- reviewing an existing DSL without modifying files
-- brainstorming how to improve the current DSL
-- listing nodes, edges, impact areas, and risks before making changes
-- producing a review report, release-gate result, and tuning suggestions after changes
-
-If another agent platform does not support the same invocation or metadata model, the recommended fallback is:
-
-- load `SKILL.md`
-- start from `references/index.md`
-- start from `references/foundations/task-routing.md`
-- load only the needed files from `references/`
-- execute the workflow in read-only review, modification, or analysis mode as appropriate
-
-## Review and Governance Characteristics
-
-This skill emphasizes:
-
-- human-readable conclusions first, structured detail second
-- graded findings using `blocking / high-risk / medium-risk / optimization`
-- multi-agent independent review, with asynchronous parallel and synchronous serial modes
-- conflict arbitration instead of simply concatenating multiple review results
-- governance items such as change impact, coverage matrix, minimal sufficiency, escalation gates, issue taxonomy, and release gates
-
-## Platform Compatibility
-
-This repository is designed to be reusable across agent ecosystems.
-
-- OpenAI / Codex:
-  Uses `agents/openai.yaml` as the current adapter metadata.
-- Claude / Qwen / other agents:
-  Can reuse `SKILL.md` and `references/` as the portable core.
-- If subagents are not available:
-  Degrade to sequential review or self-review instead of assuming multi-agent review is always possible.
-- If platform-specific metadata is needed:
-  Add a separate adapter file instead of modifying the portable core.
-
-In other words:
-
-- the skill definition lives in `SKILL.md`
-- the operational detail lives in `references/`
-- adapter metadata lives under `agents/`
-
-The current repository ships an OpenAI / Codex adapter, but the skill itself is not limited to OpenAI / Codex.
-
-## Default Conventions
-
-- Default strategy tier: `strict`
-- Coverage pass threshold: applicable path coverage `>= 95%`, and the main path, fallback path, and external-exception path must not be missing
-- Default user-facing output: `plain text`
-- Default machine-facing output for API or DSL flow consumption: `JSON`
-- Optional output forms: `Markdown`, `HTML`
-
-## Directory Structure
+## Repository Layout
 
 ```text
-dify-dsl-generator/
-├── SKILL.md
-├── README.md
-├── README.zh-CN.md
-├── LICENSE
-├── .gitignore
-├── agents/
-│   ├── index.md
-│   ├── field-constraint-checker.md
-│   ├── graph-closure-checker.md
-│   ├── prompt-contract-checker.md
-│   ├── release-readiness-checker.md
-│   └── openai.yaml
+tee/
+├── .github/workflows/validate.yml
 ├── scripts/
-│   ├── fast_test_dsl.py
-│   ├── fast_test_suite.py
-│   ├── check_forward_test_cases.py
-│   ├── init_forward_test_case.py
 │   ├── quick_validate.py
-│   └── validate_skill_repo.py
+│   ├── validate_skill_repo.py
+│   └── validate_forward_testing.py
+├── skills/
+│   ├── dify-dsl-brainstorming/
+│   ├── dify-dsl-authoring/
+│   ├── dify-dsl-review/
+│   ├── dify-dsl-refactor/
+│   ├── dify-dsl-foundations/
+│   ├── dify-dsl-nodes/
+│   ├── dify-dsl-templates/
+│   ├── dify-dsl-quality/
+│   ├── dify-dsl-governance/
+│   └── dify-dsl-forward-testing/
 ├── tests/
-│   ├── cases/
-│   ├── prompts/
-│   ├── fixtures/
-│   │   └── dsl/
-│   ├── expectations/
-│   └── harness/
-│       └── assert_output.py
-└── references/
-    ├── index.md
-    ├── foundations/
-    │   ├── index.md
-    │   ├── common-dsl.md
-    │   ├── task-routing.md
-    │   └── validation-contract.md
-    ├── nodes/
-    │   ├── index.md
-    │   ├── node-llm.md
-    │   └── ...
-    ├── templates/
-    │   ├── index.md
-    │   ├── template-validation-status.md
-    │   └── ...
-    ├── quality/
-    │   ├── index.md
-    │   ├── review-checklist.md
-    │   ├── report-template.md
-    │   ├── subagent-review.md
-    │   └── ...
-    └── governance/
-        ├── index.md
-        ├── evaluation-gates.md
-        ├── coverage-matrix.md
-        └── ...
+│   └── fixtures/dsl/
+└── .forward-testing/
 ```
 
-## Directory Notes
+## Shared Resources
 
-- `SKILL.md`
-  The portable core workflow and operating instructions.
-- `agents/openai.yaml`
-  Adapter metadata for OpenAI / Codex, used for platform-specific display and invocation.
-- `agents/index.md`
-  Role directory for fixing subagent responsibilities and dispatch boundaries.
-- `agents/*.md`
-  Formal role definitions for reusable subagent dispatch prompts and output expectations.
-- `references/`
-  On-demand reference material, split by theme to keep routing shallow and loading cost low. The canonical top-level entry is `references/index.md`.
-- `references/foundations/`
-  Entry documents, routing rules, contracts, selectors, shared field references, and the canonical foundation entry page at `references/foundations/index.md`.
-- `references/nodes/`
-  Per-node documentation and the canonical node entry page at `references/nodes/index.md`.
-- `references/templates/`
-  Template catalogs, variants, validated skeletons, and the canonical template entry page at `references/templates/index.md`.
-- `references/quality/`
-  Review, repair, optimization, and the canonical quality entry page at `references/quality/index.md`.
-- `references/governance/`
-  Release gates, coverage, contracts, observability, and the canonical governance entry page at `references/governance/index.md`.
-- `scripts/validate_skill_repo.py`
-  Local structural validator for frontmatter, adapter metadata, and markdown link integrity.
-- `scripts/quick_validate.py`
-  Compatibility wrapper aligned with the standard skill-maintenance validation entrypoint.
-- `scripts/fast_test_dsl.py`
-  Read-only fast-test helper for profiling a real Dify DSL sample against the repo's routing structure.
-- `scripts/fast_test_suite.py`
-  Aggregate fast-test coverage across one or more real DSL samples and report which entry routes are still missing.
-- `scripts/check_forward_test_cases.py`
-  Validate repo-local forward-test cases and aggregate their expected route coverage.
-- `scripts/init_forward_test_case.py`
-  Initialize a reusable forward-test case directory with `prompt.txt` and `oracle.json`.
-- `tests/cases/`
-  Reusable forward-test case directories composed from prompts, fixtures, and oracle metadata.
-- `tests/prompts/`
-  Minimal prompt corpus for explicit skill requests, multiturn follow-up, downgrade pressure, and template-route cases.
-- `tests/fixtures/dsl/`
-  Local YAML fixtures for workflow, advanced-chat, rag pipeline, and broken-structure smoke tests.
-- `tests/expectations/`
-  Lightweight expectation files for output order, downgrade language, and final conclusion mapping.
-- `tests/harness/assert_output.py`
-  Generic text assertion helper for contains/order checks against captured outputs.
-- `README.md`
-  Human-facing English documentation for GitHub readers and maintainers.
-- `README.zh-CN.md`
-  Human-facing Simplified Chinese documentation for GitHub readers and maintainers.
-- `LICENSE`
-  The repository license file.
+Shared DSL fixtures live in `tests/fixtures/dsl/`.
+
+Forward-testing outputs are written to `.forward-testing/`:
+
+- `last-good.json`
+- `latest-report.json`
+- `latest-diff.json`
+
+## Common Commands
+
+Validate repository structure:
+
+```bash
+python3 scripts/quick_validate.py
+```
+
+Run forward testing:
+
+```bash
+python3 scripts/validate_forward_testing.py
+```
+
+Promote the current result to the stable baseline:
+
+```bash
+python3 scripts/validate_forward_testing.py --promote-current
+```
+
+If you want to run lower-level validation scripts directly:
+
+```bash
+python3 skills/dify-dsl-foundations/scripts/fast_test_dsl.py <sample.yml>
+python3 skills/dify-dsl-foundations/scripts/fast_test_suite.py <sample.yml|directory> [...]
+python3 skills/dify-dsl-forward-testing/scripts/run_validation_suite.py [--json-out <report.json>]
+python3 skills/dify-dsl-forward-testing/scripts/compare_validation_reports.py <old.json> <new.json> [--json-out <diff.json>]
+```
+
+## Automation
+
+The GitHub Actions workflow is in [validate.yml](.github/workflows/validate.yml).
+
+It runs two jobs:
+
+- `structure`  
+  runs `python3 scripts/quick_validate.py`
+- `forward-testing`  
+  runs `python3 scripts/validate_forward_testing.py`
+
+The `forward-testing` job uploads `.forward-testing/latest-report.json` as an artifact.
 
 ## Maintenance Notes
 
-- When adding or refining review rules, prefer putting details into `references/` instead of growing `SKILL.md`.
-- When changing review formats or governance rules, keep `references/quality/report-template.md`, `references/quality/review-checklist.md`, and `references/quality/subagent-review.md` in sync.
-- When introducing new defaults, update both `SKILL.md` and the related reference files.
-- After moving files or editing cross-links, run `python3 scripts/quick_validate.py` or `python3 scripts/validate_skill_repo.py`.
-- For a realistic artifact smoke test, run `python3 scripts/fast_test_dsl.py <path/to/sample.yml>`.
-- For route-coverage aggregation across multiple samples, run `python3 scripts/fast_test_suite.py <sample.yml|directory> [...]`.
-- To scaffold a reusable forward-test case, run `python3 scripts/init_forward_test_case.py <case-dir> --target <sample.yml>`.
-- To validate repo-local forward-test cases and aggregate expected route coverage, run `python3 scripts/check_forward_test_cases.py`.
-- To validate a captured output against a lightweight expectation, run `python3 tests/harness/assert_output.py <expectation.json> <output.txt>`.
-- When adding support for another agent platform, prefer adding a separate adapter file under `agents/` instead of changing the portable core.
+- keep new skills under `skills/dify-dsl-*`
+- keep shared DSL fixtures under `tests/fixtures/dsl/`
+- when adding or changing a case, try to add:
+  - `oracle.json`
+  - `replay-output.txt`
+  - `expectation_files`
+- if a change affects skill coordination, at minimum run:
 
-## License
-
-This repository is licensed under the [MIT License](LICENSE).
+```bash
+python3 scripts/quick_validate.py
+python3 scripts/validate_forward_testing.py
+```

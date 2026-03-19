@@ -1,0 +1,23 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的 `trigger-webhook` 入口链路，但请求体定义结构非法。
+
+**节点清单**
+- `trigger_node`
+- `end_node`
+
+**连边清单**
+- `trigger_node -> end_node`
+
+**字段检查表**
+- `method = post`
+- `content_type = application/json`
+- `body` 当前是对象，不是参数数组
+
+**风险分级**
+- 阻塞项: `trigger_webhook_body_invalid_type`
+- 高风险项: 无
+- 中风险项: 无
+- 优化项: 无
+
+**最终结论**
+- `明显不完整`

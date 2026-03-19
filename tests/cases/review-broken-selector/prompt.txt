@@ -1,4 +1,0 @@
-使用 $dify-dsl-generator 只读审核这份 Dify DSL。
-目标文件: tests/fixtures/dsl/broken-selector.yml
-
-不要重写整份 DSL，先找出最小必要修复点，给出风险分级和最终结论。不要修改文件。

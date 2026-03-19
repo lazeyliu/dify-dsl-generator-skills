@@ -1,0 +1,26 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的定时触发 workflow，入口是 `trigger-schedule`。
+
+**节点清单**
+- `trigger_node`
+- `http_node`
+- `end_node`
+
+**连边清单**
+- `trigger_node -> http_node`
+- `http_node -> end_node`
+
+**字段检查表**
+- `mode` 为 `cron`
+- `cron_expression` 显式存在
+- `timezone` 显式存在
+- 下游链路是 `http-request -> end`
+
+**风险分级**
+- 阻塞项: 无
+- 高风险项: 无
+- 中风险项: 未做独立复核；下游任务幂等性未验证
+- 优化项: 可补 visual 模式兼容 case
+
+**最终结论**
+- `需要人工确认`

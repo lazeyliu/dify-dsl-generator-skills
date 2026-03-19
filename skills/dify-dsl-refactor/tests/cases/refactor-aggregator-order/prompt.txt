@@ -1,0 +1,8 @@
+使用 $dify-dsl-refactor 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-refactor/tests/cases/refactor-aggregator-order
+目标文件: tests/fixtures/dsl/variable-aggregator-fallback-workflow.yml
+旧基线: 无
+
+这是一个真实 DSL 重构任务，不是问答。
+约束：允许给出修改后的 DSL，但不要修改磁盘文件；把 fallback 顺序改成先读 `code_backup`，再读 `code_primary`，并说明影响。

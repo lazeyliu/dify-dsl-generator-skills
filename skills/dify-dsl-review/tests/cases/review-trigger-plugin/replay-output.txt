@@ -1,0 +1,25 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的插件事件触发 workflow，入口是 `trigger-plugin`。
+
+**节点清单**
+- `trigger_node`
+- `code_node`
+- `end_node`
+
+**连边清单**
+- `trigger_node -> code_node`
+- `code_node -> end_node`
+
+**字段检查表**
+- `plugin_id / provider_id / event_name / subscription_id` 都显式存在
+- `plugin_unique_identifier` 显式存在
+- `event_parameters` 结构存在
+
+**风险分级**
+- 阻塞项: 无
+- 高风险项: 无
+- 中风险项: 未做独立复核；真实事件参数 schema 未验证
+- 优化项: 可补 if-else 分支型插件事件 case
+
+**最终结论**
+- `需要人工确认`

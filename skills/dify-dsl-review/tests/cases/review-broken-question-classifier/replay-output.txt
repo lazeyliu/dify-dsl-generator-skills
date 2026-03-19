@@ -1,0 +1,25 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的 question-classifier 路由链路，但分类出口不完整。
+
+**节点清单**
+- `start_node`
+- `classifier_node`
+- `end_sales`
+
+**连边清单**
+- `start_node -> classifier_node`
+- `classifier_node(sales) -> end_sales`
+
+**字段检查表**
+- `classes[*].id` 定义了 `sales / support`
+- 只有 `sales` 有出口
+- `support` 类别没有真实边句柄对应出口
+
+**风险分级**
+- 阻塞项: `question_classifier_handle_missing`
+- 高风险项: 无
+- 中风险项: 无
+- 优化项: 无
+
+**最终结论**
+- `明显不完整`

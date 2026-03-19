@@ -1,0 +1,26 @@
+**问题归因**
+- 当前 if-else 结构可用，但 true 分支条件 `contains hello` 过宽，容易把包含 hello 的任意输入都判进 true 分支。
+
+**最小修复路径**
+- 保持节点和边不变
+- 只把 `comparison_operator` 改成 `=`
+- 只把 `value` 从 `hello` 改成 `greeting`
+
+**变更影响**
+- true 分支从模糊匹配改成精确匹配，误命中会减少
+- false 分支触发概率会提高
+
+**修改后的 DSL**
+```yaml
+cases:
+  - case_id: "true"
+    logical_operator: and
+    conditions:
+      - variable_selector: [start_node, query]
+        comparison_operator: "="
+        value: greeting
+```
+
+**剩余风险**
+- 仍然没有独立复核
+- 如果业务希望模糊匹配，这次改动会改变原有触发范围

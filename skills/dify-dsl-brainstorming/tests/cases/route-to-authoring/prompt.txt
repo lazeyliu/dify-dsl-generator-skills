@@ -1,0 +1,9 @@
+使用 $dify-dsl-brainstorming 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-brainstorming/tests/cases/route-to-authoring
+需求说明: 用户输入 URL，系统请求该地址，解析返回的 JSON，并输出 status_code 和 parsed_data。
+参考样本: tests/fixtures/dsl/template-http-workflow.yml
+
+这是一个真实 Dify DSL 头脑风暴任务，不是问答。
+约束：先列已知项、未知项和阻塞未知项；阻塞未知项未清零前，不要进入 authoring / review / refactor。
+结束时必须说明准备路由到哪个 skill，以及为什么。

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dify DSL 审查"
+  short_description: "只读审查、风险分级与导入判断"
+  default_prompt: "使用 $dify-dsl-review 只读审查这份 Dify DSL，先做模式判断、结构分析和风险分级，再给最终结论；不要修改文件。"
+
+policy:
+  allow_implicit_invocation: false

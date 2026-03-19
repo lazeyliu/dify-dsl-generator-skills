@@ -1,0 +1,21 @@
+**问题归因**
+- 当前 `variable-aggregator` 优先读取 `code_primary`，如果业务想强制使用 fallback，顺序需要调整。
+
+**最小修复路径**
+- 保持节点和边不变
+- 只交换 `variables` 中两项的顺序
+
+**变更影响**
+- 输出优先级会从 primary 改成 backup
+- `end.answer` 更容易取到 `fallback`
+
+**修改后的 DSL**
+```yaml
+variables:
+  - [code_backup, backup]
+  - [code_primary, primary]
+```
+
+**剩余风险**
+- 这会改变原有 fallback 语义
+- 当前未做独立复核

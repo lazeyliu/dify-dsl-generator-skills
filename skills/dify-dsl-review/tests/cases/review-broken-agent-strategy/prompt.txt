@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 agent 的损坏样本。
+目标文件: tests/fixtures/dsl/broken-agent-strategy.yml
+
+重点检查 agent 策略字段和 tool_node_version 的合法性。不要修改文件。

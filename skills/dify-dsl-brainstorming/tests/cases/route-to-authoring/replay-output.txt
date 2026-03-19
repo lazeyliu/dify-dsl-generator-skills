@@ -1,0 +1,67 @@
+**已知项**
+- 任务类型是“新建 DSL”，不是只读审查，也不是修复/重构。
+- 目标形态可明确判断为 `workflow`，因为需求是明确的多节点编排：输入 URL -> 发起 HTTP 请求 -> 解析 JSON -> 输出结果。
+- 成功标准已经给出：输出 `status_code` 和 `parsed_data`。
+- 模板策略已基本明确：有现成参考样本 [template-http-workflow.yml](/Users/lazeyliu/Downloads/tee/tests/fixtures/dsl/template-http-workflow.yml)，适合从模板路线起手。
+- 当前权限边界明确：这是一次真实 brainstorming，不是直接写 YAML，不落盘改文件。
+- 仓库当前 skill 体系已拆分为 `brainstorming -> authoring`，而 `authoring` 内部再协作使用 `foundations / templates / nodes`。
+
+**未知项**
+- 是否需要显式处理非 `2xx` 响应，而不是仅返回 `status_code`。
+- 是否需要对“返回内容不是合法 JSON”做显式分支，而不是依赖 JSON 解析节点自然报错。
+- 是否需要额外支持认证、请求头、query 参数或请求体。
+- 是否需要对输入 URL 做域名白名单或格式校验。
+
+**阻塞未知项**
+- 无。
+- 理由：模式、目标、成功标准、模板策略都已足够明确，且当前目标只是收敛设计并决定后续路由，不要求现在落盘。
+
+**候选方案**
+1. 推荐方案：最小工作流
+   - `start` 收 `url`
+   - `http-request` 用 `GET {{#start_node.url#}}`
+   - `tool/json_parse` 解析 `http_node.body`
+   - `end` 输出 `http_node.status_code` 和 `tool_node.result`
+   - 收益：最贴合需求，和参考模板一致，验证成本最低。
+   - 风险：非 JSON 响应时会在解析节点失败，错误路径较朴素。
+
+2. 增强方案：加显式错误分支
+   - 在 HTTP 或解析后增加条件分支，分别处理非 `2xx` 与非 JSON。
+   - 收益：运行期行为更可控。
+   - 风险：超出当前“最小充分”需求，设计和验收都更重。
+
+3. 替代方案：用代码节点代替 JSON Parse
+   - 收益：可自定义解析与报错格式。
+   - 风险：没有必要，引入更高复杂度，不如内置工具稳定直接。
+
+**推荐结构与边界**
+- 推荐走方案 1。
+- 节点职责边界：
+  - `start`：只负责收输入。
+  - `http-request`：只负责请求目标 URL，并暴露 `status_code/body`。
+  - `json_parse`：只负责把响应体转成结构化对象。
+  - `end`：只负责输出契约，不承担转换逻辑。
+
+**关键数据流**
+- `start_node.url` -> `http_node.url`
+- `http_node.body` -> `tool_node.json_string`
+- `http_node.status_code` -> `end.status_code`
+- `tool_node.result` -> `end.parsed_data`
+
+**错误处理、降级与回退**
+- 当前推荐按最小方案处理：
+  - HTTP 失败时，保留 `status_code` 作为主要观测字段。
+  - 返回体非 JSON 时，由 JSON Parse 节点自然失败，不额外包装。
+- 明确不做：
+  - 不在本轮加入认证、重试、白名单、复杂异常分支。
+  - 不把最小需求升级成“健壮生产版工作流”。
+
+**测试与验收方式**
+- 能判断为 `workflow` 模式。
+- `start` 节点存在必填 `url` 输入。
+- `http-request` 使用 `GET`，目标地址来自输入变量。
+- `json_parse` 解析来源是 HTTP 响应体。
+- `end` 只输出 `status_code:number` 和 `parsed_data:object`。
+- 结构应与参考样本保持同一骨架级别，不额外扩展节点。
+
+准备路由到 [dify-dsl-authoring](/Users/lazeyliu/Downloads/tee/skills/dify-dsl-authoring/SKILL.md)，因为阻塞未知项已清零，下一步应从已明确的需求生成 DSL 草稿。进入该 skill 后，应按它的协作顺序继续使用 [dify-dsl-foundations](/Users/lazeyliu/Downloads/tee/skills/dify-dsl-foundations/SKILL.md)、[dify-dsl-templates](/Users/lazeyliu/Downloads/tee/skills/dify-dsl-templates/SKILL.md)、[dify-dsl-nodes](/Users/lazeyliu/Downloads/tee/skills/dify-dsl-nodes/SKILL.md)，分别收敛模式/输出口径、模板起手和节点字段。

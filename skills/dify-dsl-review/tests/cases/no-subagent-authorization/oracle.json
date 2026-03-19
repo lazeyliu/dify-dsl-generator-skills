@@ -1,0 +1,27 @@
+{
+  "goal": "authorization-degrade",
+  "entry_skill": "skills/dify-dsl-review/SKILL.md",
+  "target": "tests/fixtures/dsl/min-advanced-chat.yml",
+  "baseline": null,
+  "expected_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md",
+    "skills/dify-dsl-templates/SKILL.md",
+    "skills/dify-dsl-quality/SKILL.md",
+    "skills/dify-dsl-governance/SKILL.md"
+  ],
+  "expected_static_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md",
+    "skills/dify-dsl-templates/SKILL.md",
+    "skills/dify-dsl-quality/SKILL.md",
+    "skills/dify-dsl-governance/SKILL.md"
+  ],
+  "expected_read_only": true,
+  "replay_output_file": "replay-output.txt",
+  "expectation_files": [
+    "skills/dify-dsl-review/tests/expectations/default-output-order.json",
+    "skills/dify-dsl-review/tests/expectations/no-subagent-degrade.json",
+    "skills/dify-dsl-review/tests/expectations/final-conclusion-map.json"
+  ]
+}

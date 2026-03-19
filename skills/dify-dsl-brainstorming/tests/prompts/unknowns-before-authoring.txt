@@ -1,0 +1,2 @@
+使用 $dify-dsl-brainstorming 先收敛这个 Dify workflow 需求的未知项。
+在阻塞未知项清零前，不要进入 authoring；最后说明准备路由到哪个 skill，以及为什么。

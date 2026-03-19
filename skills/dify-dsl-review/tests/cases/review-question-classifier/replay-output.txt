@@ -1,0 +1,30 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的模型分类 workflow，主链路是 `start -> question-classifier -> end`。
+
+**节点清单**
+- `start_node`
+- `classifier_node`
+- `end_sales`
+- `end_support`
+
+**连边清单**
+- `start_node -> classifier_node`
+- `classifier_node(sales) -> end_sales`
+- `classifier_node(support) -> end_support`
+
+**字段检查表**
+- `query_variable_selector` 指向 `start_node.query`
+- `classes[*].id` 为 `sales / support`
+- 边句柄与 `classes[*].id` 一致
+- 每个类别都有真实出口
+
+**风险分级**
+- 阻塞项: 无
+- 高风险项: 无
+- 中风险项: 未做独立复核；未验证更多类别扩展场景
+- 优化项: 可补 instruction 更细化分类边界
+
+**最终结论**
+- `需要人工确认`
+
+原因：结构正确，但当前只完成静态审查，没有独立复核和导入级验证。

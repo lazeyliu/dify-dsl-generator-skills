@@ -1,0 +1,26 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的 question-classifier 路由链路，但分类定义存在重复 class id。
+
+**节点清单**
+- `start_node`
+- `classifier_node`
+- `end_sales`
+
+**连边清单**
+- `start_node -> classifier_node`
+- `classifier_node(sales) -> end_sales`
+
+**字段检查表**
+- `classes[*].id` 定义了两个 `sales`
+- 第二个分类名称是 `二次销售`
+- 只有一个 `sales` 句柄出口，类别语义已冲突
+- `query_variable_selector` 指向 `start_node.query`
+
+**风险分级**
+- 阻塞项: `question_classifier_class_id_duplicate`
+- 高风险项: 无
+- 中风险项: 无
+- 优化项: 无
+
+**最终结论**
+- `明显不完整`

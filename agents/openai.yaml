@@ -1,7 +1,0 @@
-interface:
-  display_name: "Dify DSL 编排"
-  short_description: "生成、审查、修复与重构 Dify DSL"
-  default_prompt: "使用 $dify-dsl-generator 先做模式判断和结构分析，再生成、审查、修复或重构这份 Dify DSL。"
-
-policy:
-  allow_implicit_invocation: false

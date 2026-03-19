@@ -1,0 +1,8 @@
+使用 $dify-dsl-refactor 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-refactor/tests/cases/refactor-trigger-plugin-event
+目标文件: tests/fixtures/dsl/trigger-plugin-code-workflow.yml
+旧基线: 无
+
+这是一个真实 DSL 重构任务，不是问答。
+约束：允许给出修改后的 DSL，但不要修改磁盘文件；把 `event_name` 从 `on_created` 改成 `on_updated`，并说明影响。

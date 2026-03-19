@@ -1,0 +1,8 @@
+使用 $dify-dsl-refactor 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-refactor/tests/cases/rename-classifier-handle
+目标文件: tests/fixtures/dsl/question-classifier-routing-workflow.yml
+旧基线: 无
+
+这是一个真实 DSL 重构任务，不是问答。
+约束：允许给出修改后的 DSL，但不要修改磁盘文件；把 `sales` 类改名为 `purchase`，并同步边句柄，其他结构尽量不动。

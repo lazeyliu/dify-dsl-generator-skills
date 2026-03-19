@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dify DSL 头脑风暴"
+  short_description: "先清未知项，再决定进入生成、审查还是重构"
+  default_prompt: "使用 $dify-dsl-brainstorming 先澄清 Dify DSL 任务的未知项、比较方案并决定下一步流程；阻塞未知项未清零前不要进入生成、审查或重构。"
+
+policy:
+  allow_implicit_invocation: false

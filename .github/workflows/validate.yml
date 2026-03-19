@@ -1,0 +1,55 @@
+name: Validate Skills
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate Skill Structure
+        run: python3 scripts/quick_validate.py
+
+  forward-testing:
+    runs-on: ubuntu-latest
+    needs: structure
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Validate Forward Testing
+        run: python3 scripts/validate_forward_testing.py
+
+      - name: Upload Forward Testing Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forward-testing-report
+          path: .forward-testing/latest-report.json
+          if-no-files-found: warn

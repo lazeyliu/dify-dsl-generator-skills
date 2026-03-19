@@ -1,0 +1,26 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的 `trigger-webhook` 触发 workflow，入口不是普通 `start`。
+
+**节点清单**
+- `trigger_node`
+- `code_node`
+- `end_node`
+
+**连边清单**
+- `trigger_node -> code_node`
+- `code_node -> end_node`
+
+**字段检查表**
+- `method` 为 `post`
+- `content_type` 为 `application/json`
+- `body` 定义了 `payload`
+- 图中没有并列普通 `start`
+
+**风险分级**
+- 阻塞项: 无
+- 高风险项: 无
+- 中风险项: 未做独立复核；真实 webhook body 兼容性未验证
+- 优化项: 可补 headers/params 白名单约束
+
+**最终结论**
+- `需要人工确认`

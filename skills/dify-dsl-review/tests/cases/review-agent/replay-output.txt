@@ -1,0 +1,27 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的 agent 策略 workflow，主链路是 `start -> agent -> end`。
+
+**节点清单**
+- `start_node`
+- `agent_node`
+- `end_node`
+
+**连边清单**
+- `start_node -> agent_node`
+- `agent_node -> end_node`
+
+**字段检查表**
+- `agent_strategy_provider_name` 存在
+- `agent_strategy_name` 存在
+- `agent_strategy_label` 存在
+- `tool_node_version` 显式为 `"2"`
+- `end` 输出引用 `agent_node.text`
+
+**风险分级**
+- 阻塞项: 无
+- 高风险项: 无
+- 中风险项: 未做独立复核；agent_parameters 为空时的策略要求仍需人工确认
+- 优化项: 可补 tool 参数型 agent case
+
+**最终结论**
+- `需要人工确认`

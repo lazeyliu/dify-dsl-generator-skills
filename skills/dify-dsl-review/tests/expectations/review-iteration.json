@@ -1,0 +1,15 @@
+{
+  "ordered_markers": [
+    "模式判断",
+    "节点清单",
+    "连边清单",
+    "字段检查表",
+    "风险分级",
+    "最终结论"
+  ],
+  "must_contain_all": [
+    "iterator_selector",
+    "output_selector",
+    "需要人工确认"
+  ]
+}

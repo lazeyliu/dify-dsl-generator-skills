@@ -1,0 +1,32 @@
+kind: app
+version: 0.6.0
+app:
+  mode: workflow
+  name: broken-trigger-schedule-cron
+  description: ""
+dependencies: []
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    nodes:
+      - id: trigger_node
+        type: custom
+        data:
+          title: Trigger Schedule
+          type: trigger-schedule
+          mode: cron
+          timezone: Asia/Shanghai
+      - id: end_node
+        type: custom
+        data:
+          title: End
+          type: end
+          outputs: []
+    edges:
+      - id: trigger-to-end
+        source: trigger_node
+        sourceHandle: source
+        target: end_node
+        targetHandle: target

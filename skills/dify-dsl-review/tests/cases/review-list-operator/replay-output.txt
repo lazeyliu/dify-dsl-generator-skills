@@ -1,0 +1,29 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的列表处理 workflow，主链路是 `code -> list-operator -> end`。
+
+**节点清单**
+- `start_node`
+- `code_node`
+- `list_node`
+- `end_node`
+
+**连边清单**
+- `start_node -> code_node`
+- `code_node -> list_node`
+- `list_node -> end_node`
+
+**字段检查表**
+- `variable` 指向数组来源
+- `filter_by` 结构存在
+- `order_by` 结构存在
+- `limit` 结构存在
+- `end` 输出引用 `list_node.result`
+
+**风险分级**
+- 阻塞项: 无
+- 高风险项: 无
+- 中风险项: 未做独立复核；extract_by 场景未覆盖
+- 优化项: 可补 filter_by 开启场景
+
+**最终结论**
+- `需要人工确认`

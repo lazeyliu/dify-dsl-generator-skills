@@ -1,0 +1,25 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的 human-input 审批链路，但人工动作和输出字段存在重复定义。
+
+**节点清单**
+- `start_node`
+- `human_node`
+- `end_node`
+
+**连边清单**
+- `start_node -> human_node`
+- `human_node(approve) -> end_node`
+
+**字段检查表**
+- `user_actions` 里 `approve` 重复
+- `inputs` 里 `output_variable_name=comment` 重复
+- `__timeout` 恢复路径未显式声明
+
+**风险分级**
+- 阻塞项: `human_input_action_id_duplicate`、`human_input_output_name_duplicate`
+- 高风险项: `human_input_timeout_path_missing`
+- 中风险项: 无
+- 优化项: 无
+
+**最终结论**
+- `明显不完整`

@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 loop 的 Dify workflow。
+目标文件: tests/fixtures/dsl/loop-assigner-workflow.yml
+
+重点检查 `break_conditions`、`loop_variables`、`start_node_id` 和循环闭环。不要修改文件。

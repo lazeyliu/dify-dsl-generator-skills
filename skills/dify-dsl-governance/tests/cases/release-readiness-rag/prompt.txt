@@ -1,0 +1,13 @@
+使用 $dify-dsl-governance 执行这次只读 forward-test。
+
+工作目录: skills/dify-dsl-governance/tests/cases/release-readiness-rag
+目标文件: tests/fixtures/dsl/knowledge-retrieval-chatflow.yml
+旧基线: 无
+
+这是一个真实治理判断任务，不是问答。
+约束：只读；不要修改文件；不要生成新 DSL。
+
+请直接行动：
+1. 先做模式判断和结构分析。
+2. 重点检查发布门禁、覆盖率缺口、证据来源和最终结论。
+3. 如果没有完成独立复核，明确写出风险升级。

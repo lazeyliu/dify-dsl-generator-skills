@@ -1,0 +1,92 @@
+kind: app
+version: 0.6.0
+app:
+  mode: workflow
+  name: iteration-template-transform-workflow
+  description: ""
+dependencies: []
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    nodes:
+      - id: start_node
+        type: custom
+        data:
+          title: Start
+          type: start
+          variables: []
+      - id: code_node
+        type: custom
+        data:
+          title: Code
+          type: code
+          code_language: python3
+          code: |
+            def main():
+                return {"result": [1, 2, 3]}
+          outputs:
+            result:
+              type: array[number]
+              children: null
+      - id: iteration_node
+        type: custom
+        data:
+          title: Iteration
+          type: iteration
+          iterator_selector: [code_node, result]
+          output_selector: [template_node, output]
+          output_type: array[string]
+          start_node_id: iteration_start
+          is_parallel: false
+          parallel_nums: 10
+          error_handle_mode: terminated
+          flatten_output: false
+      - id: iteration_start
+        type: custom-iteration-start
+        parentId: iteration_node
+        data:
+          title: ""
+          type: iteration-start
+      - id: template_node
+        type: custom
+        parentId: iteration_node
+        data:
+          title: Template
+          type: template-transform
+          template: "output: {{ arg1 }}"
+          variables:
+            - variable: arg1
+              value_selector: [iteration_node, item]
+              value_type: string
+      - id: end_node
+        type: custom
+        data:
+          title: End
+          type: end
+          outputs:
+            - variable: output
+              value_type: array[string]
+              value_selector: [iteration_node, output]
+    edges:
+      - id: start-to-code
+        source: start_node
+        sourceHandle: source
+        target: code_node
+        targetHandle: target
+      - id: code-to-iteration
+        source: code_node
+        sourceHandle: source
+        target: iteration_node
+        targetHandle: target
+      - id: iter-start-to-template
+        source: iteration_start
+        sourceHandle: source
+        target: template_node
+        targetHandle: target
+      - id: iteration-to-end
+        source: iteration_node
+        sourceHandle: source
+        target: end_node
+        targetHandle: target

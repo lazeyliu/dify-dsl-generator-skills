@@ -1,0 +1,38 @@
+**模式判断**
+
+- 这是一个 `kind: app`、`app.mode: workflow` 的最小工作流 DSL，结构上是 `start -> end` 的骨架，但当前图没有真正闭环。
+
+**节点清单**
+
+- `start_node`：`data.type: start`，入口节点。
+- `end_node`：`data.type: end`，终点节点，声明输出 `answer`。
+
+**连边清单**
+
+- `broken-edge`：`source: start_node`，`target: missing_node`。`missing_node` 不存在，边悬空。
+
+**字段检查表**
+
+| 检查项 | 结果 | 说明 |
+| --- | --- | --- |
+| YAML 语法 | 通过 | 已做语法级解析，文件可读。 |
+| `workflow.graph.nodes` / `edges` | 通过 | 两者都存在。 |
+| 节点 ID 唯一性 | 通过 | 仅 `start_node`、`end_node`，无重复。 |
+| 边引用有效性 | 失败 | `broken-edge.target = missing_node`，节点不存在。 |
+| `end.outputs[*].value_selector` 有效性 | 失败 | `value_selector: [missing_node, text]` 引用了不存在节点。 |
+| 入口到终点可达性 | 失败 | 当前唯一边未连接到 `end_node`，主路径不闭合。 |
+| 输出闭环 | 失败 | `end_node` 的输出无法追溯到真实上游。 |
+
+**风险分级**
+
+- 阻塞项 `selector_drift`：`end_node.data.outputs[0].value_selector` 指向不存在的 `missing_node`。
+- 阻塞项 `gate_blocked`：唯一一条边 `broken-edge` 的目标节点不存在，图结构闭环失败。
+
+**最小必要修复点**
+
+- 修 1 处连边：把 `broken-edge.target` 改为真实终点 `end_node`。
+- 修 1 处输出选择器：把 `end_node.outputs[0].value_selector` 改为指向真实可达上游的选择器。
+
+**最终结论**
+
+结论是 `明显不完整`。

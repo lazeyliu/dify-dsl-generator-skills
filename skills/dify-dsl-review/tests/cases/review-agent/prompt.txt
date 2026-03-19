@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 agent 的 Dify workflow。
+目标文件: tests/fixtures/dsl/agent-tool-workflow.yml
+
+重点检查 agent_strategy 字段、tool_node_version 和终点输出 selector。不要修改文件。

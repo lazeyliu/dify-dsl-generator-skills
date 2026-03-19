@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 trigger-webhook 的损坏样本。
+目标文件: tests/fixtures/dsl/broken-trigger-webhook-body.yml
+
+重点检查 webhook body 结构是否合法，以及入口字段是否和下游消费一致。不要修改文件。

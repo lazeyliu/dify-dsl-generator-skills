@@ -1,0 +1,9 @@
+使用 $dify-dsl-authoring 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-authoring/tests/cases/list-operator-authoring
+需求说明: 系统先得到一个数字列表，再做排序和截断，最终输出处理后的 items。
+参考样本: tests/fixtures/dsl/list-operator-workflow.yml
+
+这是一个真实 DSL 生成任务，不是问答。
+约束：不要修改文件；先给模式判断、模板选择、节点清单、连边清单和字段检查表，再给 DSL 草稿。
+如果需求仍有阻塞未知项，明确写出并停止进入正文。

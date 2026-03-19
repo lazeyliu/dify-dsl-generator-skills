@@ -1,0 +1,38 @@
+**问题归因**
+- `start_node.data.variables` 为空，入口没有任何可被下游引用的合法变量。
+- `end_node.outputs[0].value_selector` 指向不存在的 `missing_node`。
+- 图上唯一一条边也指向不存在的 `missing_node`。
+
+**最小修复路径**
+- 给 `start_node` 补一个最小入口变量 `query`。
+- 把 `end.outputs[0].value_selector` 改成 `[start_node, query]`。
+- 把悬空边改成真实闭环：`start_node -> end_node`。
+
+**变更影响**
+- 修复后，DSL 会从“图不闭环、selector 悬空”变成一个合法的最小 `start -> end` workflow。
+
+**修改后的 DSL**
+```yaml
+kind: app
+version: 0.6.0
+workflow:
+  graph:
+    nodes:
+      - id: start_node
+        data:
+          variables:
+            - variable: query
+      - id: end_node
+        data:
+          outputs:
+            - variable: answer
+              value_selector: [start_node, query]
+    edges:
+      - id: start-to-end
+        source: start_node
+        target: end_node
+```
+
+**剩余风险**
+- 这是结构最小修复，不是语义补全。
+- 当前还没有做导入级验证。

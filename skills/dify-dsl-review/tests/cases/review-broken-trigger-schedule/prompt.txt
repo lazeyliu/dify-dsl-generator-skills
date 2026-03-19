@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 trigger-schedule 的损坏样本。
+目标文件: tests/fixtures/dsl/broken-trigger-schedule-cron.yml
+
+重点检查 mode=cron 下的时间配置是否完整。不要修改文件。

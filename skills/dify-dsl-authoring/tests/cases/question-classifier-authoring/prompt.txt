@@ -1,0 +1,9 @@
+使用 $dify-dsl-authoring 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-authoring/tests/cases/question-classifier-authoring
+需求说明: 用户输入 query，系统先做问题分类，分类到 sales 或 support 两条路径，最终输出 routed_query。
+参考样本: tests/fixtures/dsl/question-classifier-routing-workflow.yml
+
+这是一个真实 DSL 生成任务，不是问答。
+约束：不要修改文件；先给模式判断、模板选择、节点清单、连边清单和字段检查表，再给 DSL 草稿。
+如果需求仍有阻塞未知项，明确写出并停止进入正文。

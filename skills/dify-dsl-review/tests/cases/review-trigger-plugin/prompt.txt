@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 trigger-plugin 的 Dify workflow。
+目标文件: tests/fixtures/dsl/trigger-plugin-code-workflow.yml
+
+重点检查 plugin_id、provider_id、event_name、subscription_id 和事件入口结构。不要修改文件。

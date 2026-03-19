@@ -1,0 +1,15 @@
+{
+  "ordered_markers": [
+    "模式判断",
+    "节点清单",
+    "连边清单",
+    "字段检查表",
+    "风险分级",
+    "最终结论"
+  ],
+  "must_contain_all": [
+    "knowledge_retrieval_query_missing",
+    "knowledge_retrieval_topk_invalid",
+    "明显不完整"
+  ]
+}

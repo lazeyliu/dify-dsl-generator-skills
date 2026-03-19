@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 iteration 的 Dify workflow。
+目标文件: tests/fixtures/dsl/iteration-template-transform-workflow.yml
+
+重点检查 `iterator_selector`、`output_selector`、`start_node_id` 和容器内闭环。不要修改文件。

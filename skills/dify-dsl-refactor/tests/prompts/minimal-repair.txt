@@ -1,0 +1,2 @@
+使用 $dify-dsl-refactor 修复这份 Dify DSL。
+先解释问题归因，再给最小修复方案、修改后的 DSL 和剩余风险。不要直接重写整份 DSL。

@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 list-operator 的损坏样本。
+目标文件: tests/fixtures/dsl/broken-list-operator-limit.yml
+
+重点检查 limit、order_by 和列表输出约束。不要修改文件。

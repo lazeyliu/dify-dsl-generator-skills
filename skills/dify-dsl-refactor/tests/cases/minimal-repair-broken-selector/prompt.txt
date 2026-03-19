@@ -1,0 +1,9 @@
+使用 $dify-dsl-refactor 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-refactor/tests/cases/minimal-repair-broken-selector
+目标文件: tests/fixtures/dsl/broken-selector.yml
+旧基线: 无
+
+这是一个真实 DSL 修复任务，不是问答。
+约束：允许给出修改后的 DSL，但不要修改磁盘文件；先解释问题归因和最小修复路径，再给修改结果和剩余风险。
+如果目标其实只需要只读结论，明确写出应切到 dify-dsl-review。

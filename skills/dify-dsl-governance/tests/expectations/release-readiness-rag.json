@@ -1,0 +1,13 @@
+{
+  "ordered_markers": [
+    "模式与结构",
+    "主要问题",
+    "发布门禁与覆盖率",
+    "最终结论"
+  ],
+  "must_contain_all": [
+    "knowledge-retrieval",
+    "未做独立复核",
+    "明显不完整"
+  ]
+}

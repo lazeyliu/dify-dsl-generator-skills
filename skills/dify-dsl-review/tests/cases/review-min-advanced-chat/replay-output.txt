@@ -1,0 +1,43 @@
+**问题发现**
+
+阻塞项：
+- 无
+
+高风险项：
+- `llm_node.data.context` 缺失。
+- `llm_node.data.prompt_template` 只有系统提示，未显式消费用户输入。
+
+中风险项：
+- `workflow.conversation_variables[0]` 声明了 `user_language`，但图中没有任何节点读写它。
+- `dependencies[0]` 声明了 marketplace 插件依赖，但没有节点消费该依赖。
+- `旧基线` 为无，当前证据仍不足以给出“可直接导入”。
+
+优化项：
+- 无
+
+**模式判断**
+- 这是 `kind: app` + `app.mode: advanced-chat` 的极简 Chatflow，主链路是 `start -> llm -> answer`。
+
+**节点清单**
+- `start_node`: `start`
+- `llm_node`: `llm`
+- `answer_node`: `answer`
+
+**连边清单**
+- `start-to-llm`: `start_node -> llm_node`
+- `llm-to-answer`: `llm_node -> answer_node`
+
+**字段检查表**
+- YAML 语法校验：已完成。
+- 图结构闭环：通过。
+- 实体 / 模型级校验：未完整完成。
+- 独立复核：未做独立复核。
+- 发布门禁检查：未启动。
+
+**结论**
+- `需要人工确认`
+
+原因：
+- `llm_node.data.context` 缺失。
+- `conversation_variables` 与插件依赖都没有形成清晰消费闭环。
+- `未做独立复核`，且未完成真实实体 / 导入器级校验，不能下“可直接导入”的结论。

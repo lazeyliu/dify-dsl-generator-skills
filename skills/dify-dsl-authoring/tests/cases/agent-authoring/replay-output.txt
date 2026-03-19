@@ -1,0 +1,29 @@
+**模式判断**
+这是 `workflow` 模式，目标是把输入交给 agent 策略执行，再输出结果。
+
+**模板选择**
+选择 `基础 Workflow 模板`，在中间插入 `agent` 节点。
+
+**节点清单**
+1. `start_node`
+2. `agent_node`
+3. `end_node`
+
+**连边清单**
+1. `start_node -> agent_node`
+2. `agent_node -> end_node`
+
+**字段检查表**
+- `agent_strategy_provider_name` 应显式存在
+- `agent_strategy_name` 应显式存在
+- `agent_strategy_label` 应显式存在
+- `tool_node_version` 建议显式为 `"2"`
+
+**DSL 草稿**
+```yaml
+data:
+  type: agent
+  tool_node_version: "2"
+  agent_strategy_provider_name: builtin
+  agent_strategy_name: react
+```

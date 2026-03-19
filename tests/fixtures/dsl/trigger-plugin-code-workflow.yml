@@ -1,0 +1,56 @@
+kind: app
+version: 0.6.0
+app:
+  mode: workflow
+  name: trigger-plugin-code-workflow
+  description: ""
+dependencies: []
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    nodes:
+      - id: trigger_node
+        type: custom
+        data:
+          title: Trigger Plugin
+          type: trigger-plugin
+          plugin_id: plugin_x
+          provider_id: provider_x
+          event_name: on_created
+          subscription_id: sub_x
+          plugin_unique_identifier: provider/plugin:1.0.0
+          event_parameters: {}
+      - id: code_node
+        type: custom
+        data:
+          title: Code
+          type: code
+          code_language: python3
+          code: |
+            def main():
+                return {"handled": True}
+          outputs:
+            handled:
+              type: boolean
+      - id: end_node
+        type: custom
+        data:
+          title: End
+          type: end
+          outputs:
+            - variable: handled
+              value_type: boolean
+              value_selector: [code_node, handled]
+    edges:
+      - id: trigger-to-code
+        source: trigger_node
+        sourceHandle: source
+        target: code_node
+        targetHandle: target
+      - id: code-to-end
+        source: code_node
+        sourceHandle: source
+        target: end_node
+        targetHandle: target

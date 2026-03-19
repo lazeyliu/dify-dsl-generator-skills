@@ -1,0 +1,27 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的 list-operator 链路，但列表截断配置非法。
+
+**节点清单**
+- `start_node`
+- `code_node`
+- `list_node`
+- `end_node`
+
+**连边清单**
+- `start_node -> code_node`
+- `code_node -> list_node`
+- `list_node -> end_node`
+
+**字段检查表**
+- `limit.enabled = true`
+- `limit.size = 0`
+- 开启 limit 时 size 应为大于等于 1 的整数
+
+**风险分级**
+- 阻塞项: `list_operator_limit_invalid`
+- 高风险项: 无
+- 中风险项: 无
+- 优化项: 无
+
+**最终结论**
+- `明显不完整`

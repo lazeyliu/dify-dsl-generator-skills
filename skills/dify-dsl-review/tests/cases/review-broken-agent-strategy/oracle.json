@@ -1,0 +1,25 @@
+{
+  "goal": "review",
+  "entry_skill": "skills/dify-dsl-review/SKILL.md",
+  "target": "tests/fixtures/dsl/broken-agent-strategy.yml",
+  "baseline": null,
+  "expected_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md",
+    "skills/dify-dsl-quality/SKILL.md"
+  ],
+  "expected_static_routes": [
+    "skills/dify-dsl-foundations/SKILL.md",
+    "skills/dify-dsl-nodes/SKILL.md"
+  ],
+  "expected_read_only": true,
+  "expected_lint_status": "issues",
+  "expected_lint_error_codes": [
+    "agent_strategy_name_invalid",
+    "agent_tool_node_version_invalid"
+  ],
+  "replay_output_file": "replay-output.txt",
+  "expectation_files": [
+    "skills/dify-dsl-review/tests/expectations/review-broken-agent-strategy.json"
+  ]
+}

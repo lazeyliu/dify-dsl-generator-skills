@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 human-input 的 Dify workflow。
+目标文件: tests/fixtures/dsl/human-input-approval-workflow.yml
+
+重点检查 `delivery_methods`、`user_actions`、`timeout` 和人工恢复路径。不要修改文件。

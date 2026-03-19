@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dify DSL 生成"
+  short_description: "从明确需求生成 DSL 草稿"
+  default_prompt: "使用 $dify-dsl-authoring 先做模式判断、模板与节点收敛，再生成这份 Dify DSL 草稿；如果需求仍有阻塞未知项，先退回 dify-dsl-brainstorming。"
+
+policy:
+  allow_implicit_invocation: false

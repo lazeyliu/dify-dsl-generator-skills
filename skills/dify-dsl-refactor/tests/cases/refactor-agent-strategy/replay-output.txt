@@ -1,0 +1,21 @@
+**问题归因**
+- 当前 agent 策略是 `react`，如果业务更偏计划型执行，策略名需要切换。
+
+**最小修复路径**
+- 保持节点和连边不变
+- 只把 `agent_strategy_name` 从 `react` 改成 `planner`
+
+**变更影响**
+- agent 的执行风格会变化
+- 下游输出字段不变，但行为语义会改变
+
+**修改后的 DSL**
+```yaml
+data:
+  type: agent
+  agent_strategy_name: planner
+```
+
+**剩余风险**
+- 当前未做独立复核
+- 如外部策略注册表里不存在 `planner`，需要同步确认

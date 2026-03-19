@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 knowledge-retrieval 的 Dify chatflow。
+目标文件: tests/fixtures/dsl/knowledge-retrieval-chatflow.yml
+
+重点检查 dataset_ids、query 来源、retrieval_mode 和检索结果到 llm 的消费。不要修改文件。

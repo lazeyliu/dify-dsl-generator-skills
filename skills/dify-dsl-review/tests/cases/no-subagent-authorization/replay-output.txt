@@ -1,0 +1,36 @@
+**问题发现**
+- 高风险: `llm_node.data` 缺少 `context`。
+- 高风险: `prompt_template` 只有系统提示，没有显式消费用户输入。
+- 中风险: `conversation_variables.user_language` 声明了但未消费。
+- 中风险: 顶层依赖声明了 marketplace 插件，但图中没有节点消费它。
+
+**模式判断**
+- 这是 `kind: app` + `app.mode: advanced-chat` 的极简 chatflow。
+
+**节点清单**
+- `start_node`
+- `llm_node`
+- `answer_node`
+
+**连边清单**
+- `start_node -> llm_node`
+- `llm_node -> answer_node`
+
+**字段检查表**
+- YAML 语法校验：已完成
+- 图结构闭环：通过
+- 实体/模型级校验：未完整完成
+- 独立复核：未完成
+
+**风险分级**
+- 阻塞项: 无已程序化证实的阻塞项
+- 高风险项: `context` 缺失；主回复语义来源不清
+- 中风险项: 对话变量未参与读写；依赖与版本假设不清
+- 优化项: 无
+
+**最终结论**
+- `需要人工确认`
+
+原因：
+1. `未做独立复核`
+2. 未完成真实实体/导入器级校验，不能表述为 `已精准校验`

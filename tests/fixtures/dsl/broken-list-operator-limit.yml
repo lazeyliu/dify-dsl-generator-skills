@@ -1,0 +1,73 @@
+kind: app
+version: 0.6.0
+app:
+  mode: workflow
+  name: broken-list-operator-limit
+  description: ""
+dependencies: []
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    nodes:
+      - id: start_node
+        type: custom
+        data:
+          title: Start
+          type: start
+          variables: []
+      - id: code_node
+        type: custom
+        data:
+          title: Code
+          type: code
+          code_language: python3
+          code: |
+            def main():
+                return {"result": [3, 1, 2]}
+          outputs:
+            result:
+              type: array[number]
+              children: null
+      - id: list_node
+        type: custom
+        data:
+          title: List Operator
+          type: list-operator
+          variable: [code_node, result]
+          filter_by:
+            enabled: false
+            conditions: []
+          order_by:
+            enabled: true
+            key: ""
+            value: asc
+          limit:
+            enabled: true
+            size: 0
+      - id: end_node
+        type: custom
+        data:
+          title: End
+          type: end
+          outputs:
+            - variable: items
+              value_type: array[number]
+              value_selector: [list_node, result]
+    edges:
+      - id: start-to-code
+        source: start_node
+        sourceHandle: source
+        target: code_node
+        targetHandle: target
+      - id: code-to-list
+        source: code_node
+        sourceHandle: source
+        target: list_node
+        targetHandle: target
+      - id: list-to-end
+        source: list_node
+        sourceHandle: source
+        target: end_node
+        targetHandle: target

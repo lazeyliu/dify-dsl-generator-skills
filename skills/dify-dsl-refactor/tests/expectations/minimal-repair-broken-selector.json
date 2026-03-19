@@ -1,0 +1,13 @@
+{
+  "ordered_markers": [
+    "问题归因",
+    "最小修复路径",
+    "变更影响",
+    "修改后的 DSL",
+    "剩余风险"
+  ],
+  "must_contain_all": [
+    "start_node -> end_node",
+    "value_selector: [start_node, query]"
+  ]
+}

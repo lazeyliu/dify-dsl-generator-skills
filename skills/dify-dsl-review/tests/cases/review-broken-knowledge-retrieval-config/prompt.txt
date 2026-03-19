@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 knowledge-retrieval 的损坏样本。
+目标文件: tests/fixtures/dsl/broken-knowledge-retrieval-config.yml
+
+重点检查 query_variable_selector 和 multiple_retrieval_config。不要修改文件。

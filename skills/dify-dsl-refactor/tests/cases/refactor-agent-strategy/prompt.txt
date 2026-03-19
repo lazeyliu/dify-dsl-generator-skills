@@ -1,0 +1,8 @@
+使用 $dify-dsl-refactor 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-refactor/tests/cases/refactor-agent-strategy
+目标文件: tests/fixtures/dsl/agent-tool-workflow.yml
+旧基线: 无
+
+这是一个真实 DSL 重构任务，不是问答。
+约束：允许给出修改后的 DSL，但不要修改磁盘文件；把 `agent_strategy_name` 从 `react` 改成 `planner`，并说明影响。

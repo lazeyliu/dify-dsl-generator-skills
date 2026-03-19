@@ -1,0 +1,31 @@
+**模式判断**
+这是 `advanced-chat` 模式，目标是先检索知识库，再基于检索结果回答用户问题。
+
+**模板选择**
+选择 `RAG 问答模板`，核心路线是 `start -> knowledge-retrieval -> llm -> answer`。
+
+**节点清单**
+1. `start_node`
+2. `retrieval_node`
+3. `llm_node`
+4. `answer_node`
+
+**连边清单**
+1. `start_node -> retrieval_node`
+2. `retrieval_node -> llm_node`
+3. `llm_node -> answer_node`
+
+**字段检查表**
+- `dataset_ids` 不应为空
+- `query_variable_selector` 应指向用户查询
+- `retrieval_mode` 应显式声明
+- `llm.context.variable_selector` 应消费检索结果
+
+**DSL 草稿**
+```yaml
+data:
+  type: knowledge-retrieval
+  query_variable_selector: [sys, query]
+  dataset_ids: [dataset_1]
+  retrieval_mode: multiple
+```

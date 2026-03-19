@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 agent 的损坏样本。
+目标文件: tests/fixtures/dsl/broken-agent-parameters.yml
+
+重点检查 agent_parameters 结构和策略字段合法性。不要修改文件。

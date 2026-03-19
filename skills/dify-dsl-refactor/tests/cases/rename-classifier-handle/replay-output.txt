@@ -1,0 +1,25 @@
+**问题归因**
+- 当前 `sales` 类名本身没有错，但如果业务术语需要统一成 `purchase`，就必须同步改 `classes[*].id` 和对应边句柄。
+
+**最小修复路径**
+- 把 `classes[0].id` 从 `sales` 改为 `purchase`
+- 把对应边的 `sourceHandle` 从 `sales` 改为 `purchase`
+- 保持 `name`、节点、终点结构不动
+
+**变更影响**
+- 分类命中到原 `sales` 路径的流量会改走 `purchase` 句柄
+- 下游如果还有按 `sales` 读取的逻辑，需要一起同步
+
+**修改后的 DSL**
+```yaml
+classes:
+  - id: purchase
+    name: 销售
+edges:
+  - id: classifier-sales-to-end
+    sourceHandle: purchase
+```
+
+**剩余风险**
+- 如存在外部依赖旧句柄 `sales`，这次改动会产生兼容性影响
+- 当前未做独立复核

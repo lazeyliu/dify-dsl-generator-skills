@@ -1,0 +1,24 @@
+**问题归因**
+- 当前 `budget` 被定义为必填，这会在用户只给城市、不提供预算时放大抽取失败率。
+
+**最小修复路径**
+- 保持 `city` 必填不变
+- 只把 `budget.required` 从 `true` 改为 `false`
+- 保持 query、reasoning_mode、输出结构不动
+
+**变更影响**
+- 预算缺失场景会从失败转为允许空缺
+- 下游消费 `budget` 的节点需要接受空值
+
+**修改后的 DSL**
+```yaml
+parameters:
+  - name: city
+    required: true
+  - name: budget
+    required: false
+```
+
+**剩余风险**
+- 下游如果假设 `budget` 必有值，仍需要同步补空值处理
+- 当前未做独立复核

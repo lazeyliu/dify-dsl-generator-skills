@@ -1,0 +1,13 @@
+{
+  "must_contain_all": [
+    "已知项",
+    "未知项",
+    "阻塞未知项",
+    "准备路由到",
+    "dify-dsl-authoring"
+  ],
+  "must_not_contain": [
+    "准备路由到 [dify-dsl-review]",
+    "准备路由到 [dify-dsl-refactor]"
+  ]
+}

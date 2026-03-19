@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 variable-aggregator 的 Dify workflow。
+目标文件: tests/fixtures/dsl/variable-aggregator-fallback-workflow.yml
+
+重点检查 `output_type`、`variables` 顺序和 fallback 语义。不要修改文件。

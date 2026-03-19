@@ -1,225 +1,169 @@
-# dify-dsl-generator
+# tee
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[English](README.md)
 
-一个面向 AI agent 的通用型 Dify DSL skill，用于生成、审核、分析、优化与修复：
+`tee` 是一个面向 `Dify DSL` 的技能仓库。
 
-- `kind: app` 下的 `workflow`
-- `kind: app` 下的 `advanced-chat`
+它不是业务应用仓库，也不是单纯的模板集合。它提供的是一整套给 AI agent 使用的 skill、参考资料、样本和验证脚本，用来稳定地处理 `Dify Workflow`、`Chatflow` 和 `RAG Pipeline` DSL。
+
+## 项目是什么
+
+这个项目把 `Dify DSL` 当成一个需要被设计、生成、审查、修复、重构和验证的编排系统来处理。
+
+它的核心价值有三点：
+
+- 把 DSL 相关能力拆成职责清晰、可组合的 skill，而不是堆在一个大 prompt 里
+- 把节点、模板、校验、交付判断这些知识沉淀成可复用的底座
+- 把“看起来会做”变成“有样本、有 case、有 replay、有报告的可验证能力”
+
+## 项目解决什么问题
+
+直接处理 Dify DSL 时，最常见的问题不是“不会写 YAML”，而是：
+
+- 模式判断不清，`workflow / advanced-chat / rag_pipeline` 混用
+- 节点字段、选择器、连边和容器闭环容易出错
+- 模板、节点知识、审查规则和交付判断混在一起，导致上下文膨胀
+- 给得出结论，但没有证据链，也没有回归验证
+
+这个仓库就是为这些问题准备的。
+
+## 支持范围
+
+当前技能体系覆盖：
+
+- `kind: app` + `app.mode: workflow`
+- `kind: app` + `app.mode: advanced-chat`
 - `kind: rag_pipeline`
 
-这个 skill 的目标不只是产出一份 YAML，而是把 Dify DSL 当作一个要被审核、调优、验证并判断能否交付的编排系统来处理。
+## 技能组成
 
-它的核心工作流是平台中立的：
+### 入口 skill
 
-- `SKILL.md` 与 `references/` 是可移植的核心层
-- `agents/openai.yaml` 是当前面向 OpenAI / Codex 的适配元数据
-- 其他 agent 平台即使不识别这份适配文件，也可以复用核心工作流
+- [dify-dsl-brainstorming](skills/dify-dsl-brainstorming/SKILL.md)  
+  处理需求不清、未知项未收敛、需要先比较方案的场景。
+- [dify-dsl-authoring](skills/dify-dsl-authoring/SKILL.md)  
+  处理从明确需求生成 DSL 草稿的场景。
+- [dify-dsl-review](skills/dify-dsl-review/SKILL.md)  
+  处理只读审查、风险分级、导入判断和发布结论的场景。
+- [dify-dsl-refactor](skills/dify-dsl-refactor/SKILL.md)  
+  处理最小修复、优化和重构的场景。
 
-## 适用场景
+### 底座 skill
 
-这个 skill 适合这些任务：
+- [dify-dsl-foundations](skills/dify-dsl-foundations/SKILL.md)  
+  模式判断、任务路由、字段口径、输出契约、校验契约。
+- [dify-dsl-nodes](skills/dify-dsl-nodes/SKILL.md)  
+  节点知识、节点组合、容器和选择器规则。
+- [dify-dsl-templates](skills/dify-dsl-templates/SKILL.md)  
+  模板库、模板骨架、模板状态和模板变体。
+- [dify-dsl-quality](skills/dify-dsl-quality/SKILL.md)  
+  审查、修复、优化、子代理复核分工。
+- [dify-dsl-governance](skills/dify-dsl-governance/SKILL.md)  
+  发布判断、变更影响、覆盖率、观测字段和能力块约定。
 
-- 从零创建新的 Dify DSL
-- 修改现有 DSL
-- 只读审核当前 DSL，不修改文件
-- 在改动前对当前 DSL 做头脑风暴与分析
-- 输出结构化审查报告、上线前检查结果和调优建议
+### 验证 skill
 
-## 核心能力
+- [dify-dsl-forward-testing](skills/dify-dsl-forward-testing/SKILL.md)  
+  用真实样本、真实 prompt 和 replay 断言验证 skill 是否真的按预期协作。
 
-- DSL 生成：选模式、选模板、补必填字段、补选择器、补失败路径
-- DSL 修复：修复结构问题、兼容问题和图闭环问题
-- DSL 审核：语法校验、实体校验、独立复核和分级审查
-- DSL 分析：只读分析当前 DSL，输出风险、发现和优化建议
-- DSL 优化：提升精准度、稳定性、可观测性和编排灵活度
-- DSL 交付判断：支持变更影响面、覆盖率矩阵、上线前检查、观测字段约定和能力块边界约定
+## 怎么使用这个项目
 
-## 调用方式
+最简单的用法不是“看完整个仓库”，而是先按目标选入口 skill：
 
-在支持显式 skill 调用的 Codex 或兼容 agent 环境中，可以这样使用：
+- 需求还不清楚：先看 [dify-dsl-brainstorming](skills/dify-dsl-brainstorming/SKILL.md)
+- 要新建 DSL：先看 [dify-dsl-authoring](skills/dify-dsl-authoring/SKILL.md)
+- 只想只读审查 DSL：先看 [dify-dsl-review](skills/dify-dsl-review/SKILL.md)
+- 要修改已有 DSL：先看 [dify-dsl-refactor](skills/dify-dsl-refactor/SKILL.md)
+- 要验证 skill 自身是否可靠：先看 [dify-dsl-forward-testing](skills/dify-dsl-forward-testing/SKILL.md)
 
-```text
-使用 $dify-dsl-generator 审核这份 Dify DSL，并给出结构化建议。
-```
-
-常见用法包括：
-
-- 只读审核现有 DSL，不修改文件
-- 对当前 DSL 做头脑风暴，分析如何改进
-- 在改动前列出节点、边、影响面和风险点
-- 在改动后输出审查报告、上线前检查结果和调优建议
-
-如果其他 agent 平台不支持同样的调用方式或元数据模型，建议退化为：
-
-- 先读取 `SKILL.md`
-- 从 `references/index.md` 开始看总入口
-- 从 `references/foundations/task-routing.md` 开始路由
-- 再按需读取 `references/` 里的文件
-- 然后按只读审查、修改或分析模式执行对应流程
-
-## 审核与交付判断特点
-
-这个 skill 默认强调：
-
-- 先给人类可读结论，再给结构化细节
-- 关键问题按 `阻塞项 / 高风险项 / 中风险项 / 优化项` 分级
-- 支持多子代理独立复核，并区分异步并行与同步串行模式
-- 支持冲突仲裁，而不是简单拼接多份复核结果
-- 支持变更影响面、覆盖率矩阵、是否已经够用、升级条件、问题编码和上线前检查等交付判断项
-
-## 平台兼容性
-
-这个仓库设计成可跨 agent 生态复用：
-
-- OpenAI / Codex：
-  使用 `agents/openai.yaml` 作为当前适配元数据。
-- Claude / Qwen / 其他 agent：
-  可以直接复用 `SKILL.md` 和 `references/` 作为核心工作流。
-- 如果当前平台不支持子代理：
-  退化为串行复核或自检，不默认假设一定能多 agent 复核。
-- 如果需要平台特有元数据：
-  优先新增独立适配文件，而不是改动可移植的核心层。
-
-换句话说：
-
-- skill 定义本体在 `SKILL.md`
-- 操作细节和审查口径在 `references/`
-- 平台适配元数据放在 `agents/`
-
-当前仓库自带的是 OpenAI / Codex 适配层，但 skill 本身并不只服务于 OpenAI / Codex。
-
-## 默认约定
-
-- 默认策略档位：`strict`
-- 覆盖率通过标准：适用路径覆盖率 `>= 95%`，且主路径、fallback 路径、外部异常路径不得缺测
-- 面向用户阅读的默认输出：`纯文本`
-- 面向 API 或 DSL 流程消费的默认输出：`JSON`
-- 可选输出形态：`Markdown`、`HTML`
-
-## 目录结构
+## 仓库结构
 
 ```text
-dify-dsl-generator/
-├── SKILL.md
-├── README.md
-├── README.zh-CN.md
-├── LICENSE
-├── .gitignore
-├── agents/
-│   ├── index.md
-│   ├── field-constraint-checker.md
-│   ├── graph-closure-checker.md
-│   ├── prompt-contract-checker.md
-│   ├── release-readiness-checker.md
-│   └── openai.yaml
+tee/
+├── .github/workflows/validate.yml
 ├── scripts/
-│   ├── fast_test_dsl.py
-│   ├── fast_test_suite.py
-│   ├── check_forward_test_cases.py
-│   ├── init_forward_test_case.py
 │   ├── quick_validate.py
-│   └── validate_skill_repo.py
+│   ├── validate_skill_repo.py
+│   └── validate_forward_testing.py
+├── skills/
+│   ├── dify-dsl-brainstorming/
+│   ├── dify-dsl-authoring/
+│   ├── dify-dsl-review/
+│   ├── dify-dsl-refactor/
+│   ├── dify-dsl-foundations/
+│   ├── dify-dsl-nodes/
+│   ├── dify-dsl-templates/
+│   ├── dify-dsl-quality/
+│   ├── dify-dsl-governance/
+│   └── dify-dsl-forward-testing/
 ├── tests/
-│   ├── cases/
-│   ├── prompts/
-│   ├── fixtures/
-│   │   └── dsl/
-│   ├── expectations/
-│   └── harness/
-│       └── assert_output.py
-└── references/
-    ├── index.md
-    ├── foundations/
-    │   ├── index.md
-    │   ├── common-dsl.md
-    │   ├── task-routing.md
-    │   └── validation-contract.md
-    ├── nodes/
-    │   ├── index.md
-    │   ├── node-llm.md
-    │   └── ...
-    ├── templates/
-    │   ├── index.md
-    │   ├── template-validation-status.md
-    │   └── ...
-    ├── quality/
-    │   ├── index.md
-    │   ├── review-checklist.md
-    │   ├── report-template.md
-    │   ├── subagent-review.md
-    │   └── ...
-    └── governance/
-        ├── index.md
-        ├── evaluation-gates.md
-        ├── coverage-matrix.md
-        └── ...
+│   └── fixtures/dsl/
+└── .forward-testing/
 ```
 
-## 目录说明
+## 共享资源
 
-- `SKILL.md`
-  可移植的核心工作流与执行说明。
-- `agents/openai.yaml`
-  面向 OpenAI / Codex 的适配元数据，用于该平台下的展示与调用。
-- `agents/index.md`
-  当前 skill 的角色目录，用来固定子代理分工和角色职责。
-- `agents/*.md`
-  正式角色定义文件，用于子代理派发时复用职责说明和输出要求。
-- `references/`
-  按主题拆分的按需加载资料，避免主 skill 和 reference 一起膨胀；总入口是 `references/index.md`。
-- `references/foundations/`
-  入口文档、任务路由、交付约定、选择器和共享字段口径，正式入口是 `references/foundations/index.md`。
-- `references/nodes/`
-  节点目录入口与逐节点说明，正式入口是 `references/nodes/index.md`。
-- `references/templates/`
-  模板入口、模板变体和已验证骨架，正式入口是 `references/templates/index.md`。
-- `references/quality/`
-  审核、修复、优化和独立复核规则，正式入口是 `references/quality/index.md`。
-- `references/governance/`
-  上线前检查、覆盖率、约定和交付判断相关资料，正式入口是 `references/governance/index.md`。
-- `scripts/validate_skill_repo.py`
-  本地结构校验脚本，用于检查 frontmatter、适配元数据和 Markdown 链接完整性。
-- `scripts/quick_validate.py`
-  与标准 skill 维护流程对齐的兼容验证入口。
-- `scripts/fast_test_dsl.py`
-  只读快速验证脚本，用真实 Dify DSL 样本检查它命中了哪些入口路由和复杂度信号。
-- `scripts/fast_test_suite.py`
-  对一组真实 DSL 样本汇总快速验证覆盖率，显示哪些入口路线还没有被样本命中。
-- `scripts/check_forward_test_cases.py`
-  校验仓库内的前向验证用例，并汇总它们声明的路线覆盖。
-- `scripts/init_forward_test_case.py`
-  初始化一个可复用的前向验证用例目录，自动生成 `prompt.txt` 和 `oracle.json`。
-- `tests/cases/`
-  由提示词、样本和对照结果组成的可复用前向验证用例目录。
-- `tests/prompts/`
-  最小提示词语料，覆盖显式 skill 请求、多轮跟进、降级压力和模板路线任务。
-- `tests/fixtures/dsl/`
-  本地 YAML 样本，覆盖 workflow、advanced-chat、rag pipeline 和故意损坏的结构样本。
-- `tests/expectations/`
-  轻量预期文件，覆盖默认输出顺序、降级措辞和最终结论判定。
-- `tests/harness/assert_output.py`
-  通用文本断言脚本，用于对捕获输出做 contains / order 检查。
-- `README.md`
-  面向 GitHub 读者和维护者的英文说明。
-- `README.zh-CN.md`
-  面向 GitHub 读者和维护者的中文说明。
-- `LICENSE`
-  仓库许可证文件。
+共享 DSL 样本放在 `tests/fixtures/dsl/`。
 
-## 维护建议
+前向验证产物默认放在 `.forward-testing/`：
 
-- 调整审查口径时，优先把细节放进 `references/`，不要持续膨胀 `SKILL.md`
-- 修改报告格式或交付判断规则时，注意同步 `references/quality/report-template.md`、`references/quality/review-checklist.md` 和 `references/quality/subagent-review.md`
-- 引入新的默认约定时，同时更新 `SKILL.md` 和相关 reference
-- 移动 reference 文件或修改交叉链接后，运行 `python3 scripts/quick_validate.py` 或 `python3 scripts/validate_skill_repo.py`
-- 用真实样本做快速冒烟时，运行 `python3 scripts/fast_test_dsl.py <sample.yml>`
-- 对多个样本做入口覆盖汇总时，运行 `python3 scripts/fast_test_suite.py <sample.yml|directory> [...]`
-- 要生成可复用的前向验证用例骨架时，运行 `python3 scripts/init_forward_test_case.py <case-dir> --target <sample.yml>`
-- 要校验仓库内的前向验证用例并汇总路线覆盖时，运行 `python3 scripts/check_forward_test_cases.py`
-- 要用轻量预期校验捕获输出时，运行 `python3 tests/harness/assert_output.py <expectation.json> <output.txt>`
-- 如果要支持新的 agent 平台，优先在 `agents/` 下增加独立适配文件，而不是直接改动核心工作流
+- `last-good.json`
+- `latest-report.json`
+- `latest-diff.json`
 
-## 许可证
+## 常用命令
 
-当前仓库使用 [MIT License](LICENSE)。
+校验整个仓库结构：
+
+```bash
+python3 scripts/quick_validate.py
+```
+
+运行整套前向验证：
+
+```bash
+python3 scripts/validate_forward_testing.py
+```
+
+首次建立或更新稳定基线：
+
+```bash
+python3 scripts/validate_forward_testing.py --promote-current
+```
+
+如果只想直接跑 skill 内部验证脚本：
+
+```bash
+python3 skills/dify-dsl-foundations/scripts/fast_test_dsl.py <sample.yml>
+python3 skills/dify-dsl-foundations/scripts/fast_test_suite.py <sample.yml|directory> [...]
+python3 skills/dify-dsl-forward-testing/scripts/run_validation_suite.py [--json-out <report.json>]
+python3 skills/dify-dsl-forward-testing/scripts/compare_validation_reports.py <old.json> <new.json> [--json-out <diff.json>]
+```
+
+## 自动化校验
+
+GitHub Actions 工作流在 [validate.yml](.github/workflows/validate.yml)。
+
+它分成两个 job：
+
+- `structure`  
+  运行 `python3 scripts/quick_validate.py`
+- `forward-testing`  
+  运行 `python3 scripts/validate_forward_testing.py`
+
+`forward-testing` job 会上传 `.forward-testing/latest-report.json` 作为 artifact。
+
+## 维护约定
+
+- 新 skill 统一放到 `skills/dify-dsl-*`
+- 共享 fixture 统一放到 `tests/fixtures/dsl/`
+- 新增或修改 case 时，尽量同时补：
+  - `oracle.json`
+  - `replay-output.txt`
+  - `expectation_files`
+- 如果改动影响 skill 协作路径，至少跑一次：
+
+```bash
+python3 scripts/quick_validate.py
+python3 scripts/validate_forward_testing.py
+```

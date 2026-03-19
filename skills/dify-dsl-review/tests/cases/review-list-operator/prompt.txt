@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 list-operator 的 Dify workflow。
+目标文件: tests/fixtures/dsl/list-operator-workflow.yml
+
+重点检查 variable、order_by、limit 和数组输出闭环。不要修改文件。

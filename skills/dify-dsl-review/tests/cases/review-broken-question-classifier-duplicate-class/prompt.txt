@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 question-classifier 的损坏样本。
+目标文件: tests/fixtures/dsl/broken-question-classifier-duplicate-class.yml
+
+重点检查 classes[*].id 唯一性和分类出口一致性。不要修改文件。

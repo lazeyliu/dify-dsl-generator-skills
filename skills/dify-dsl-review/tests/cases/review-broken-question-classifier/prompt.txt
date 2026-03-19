@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 question-classifier 的损坏样本。
+目标文件: tests/fixtures/dsl/broken-question-classifier-routing.yml
+
+重点检查 `classes[*].id` 与边句柄是否一致，以及每个类别是否都有真正的出口。不要修改文件。

@@ -1,0 +1,21 @@
+会进入的底座 skill 只有两层。
+
+- `$dify-dsl-foundations`
+- `$dify-dsl-templates`
+
+模板：`条件分支模板`
+变体：`高质量版分支模板`
+证据等级：模板本体已由样例索引直接支撑，但该高质量变体本身只能标成“推导”。
+
+建议路线：
+
+```text
+start
+-> question-classifier
+-> parameter-extractor
+-> if-else
+-> knowledge-retrieval 或 tool/http-request
+-> variable-aggregator
+-> llm 或 template-transform
+-> end
+```

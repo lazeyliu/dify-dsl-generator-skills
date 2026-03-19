@@ -1,0 +1,9 @@
+使用 $dify-dsl-authoring 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-authoring/tests/cases/branching-if-else-authoring
+需求说明: 用户输入 query，包含 hello 走 true 分支，否则走 false 分支，最终输出 route。
+参考样本: tests/fixtures/dsl/branching-if-else-workflow.yml
+
+这是一个真实 DSL 生成任务，不是问答。
+约束：不要修改文件；先给模式判断、模板选择、节点清单、连边清单和字段检查表，再给 DSL 草稿。
+如果需求仍有阻塞未知项，明确写出并停止进入正文。

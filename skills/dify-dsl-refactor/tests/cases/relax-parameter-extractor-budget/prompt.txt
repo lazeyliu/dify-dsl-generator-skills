@@ -1,0 +1,8 @@
+使用 $dify-dsl-refactor 执行这次 forward-test。
+
+工作目录: skills/dify-dsl-refactor/tests/cases/relax-parameter-extractor-budget
+目标文件: tests/fixtures/dsl/parameter-extractor-routing-workflow.yml
+旧基线: 无
+
+这是一个真实 DSL 重构任务，不是问答。
+约束：允许给出修改后的 DSL，但不要修改磁盘文件；保持 city 必填，把 budget 从必填改成非必填，其他结构尽量不动。

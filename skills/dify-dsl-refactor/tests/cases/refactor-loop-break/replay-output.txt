@@ -1,0 +1,22 @@
+**问题归因**
+- 当前 loop 可用，但 break 条件 `>= 5` 比业务要求更晚，导致循环次数偏多。
+
+**最小修复路径**
+- 保持 loop 结构不变
+- 只把 break 条件值从 `5` 改为 `3`
+
+**变更影响**
+- 循环提前结束
+- `end.num` 的最终值会更早稳定
+
+**修改后的 DSL**
+```yaml
+break_conditions:
+  - variable_selector: [loop_node, num]
+    comparison_operator: "≥"
+    value: "3"
+```
+
+**剩余风险**
+- 当前未做独立复核
+- 如果业务依赖原 5 次循环，这次会改变结果

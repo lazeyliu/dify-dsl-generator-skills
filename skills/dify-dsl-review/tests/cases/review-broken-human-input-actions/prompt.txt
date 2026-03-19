@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 human-input 的损坏样本。
+目标文件: tests/fixtures/dsl/broken-human-input-duplicate-actions.yml
+
+重点检查 user_actions、output_variable_name 唯一性和 timeout 恢复路径。不要修改文件。

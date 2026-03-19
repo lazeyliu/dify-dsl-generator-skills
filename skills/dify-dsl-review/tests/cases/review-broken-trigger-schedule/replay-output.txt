@@ -1,0 +1,23 @@
+**模式判断**
+- 这是 `kind: app` + `app.mode: workflow` 的定时触发链路，但 cron 配置不完整。
+
+**节点清单**
+- `trigger_node`
+- `end_node`
+
+**连边清单**
+- `trigger_node -> end_node`
+
+**字段检查表**
+- `mode = cron`
+- `timezone` 已提供
+- `cron_expression` 缺失
+
+**风险分级**
+- 阻塞项: `trigger_schedule_cron_missing`
+- 高风险项: 无
+- 中风险项: 无
+- 优化项: 无
+
+**最终结论**
+- `明显不完整`

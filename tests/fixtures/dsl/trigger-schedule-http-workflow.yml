@@ -1,0 +1,55 @@
+kind: app
+version: 0.6.0
+app:
+  mode: workflow
+  name: trigger-schedule-http-workflow
+  description: ""
+dependencies: []
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    nodes:
+      - id: trigger_node
+        type: custom
+        data:
+          title: Trigger Schedule
+          type: trigger-schedule
+          mode: cron
+          cron_expression: "0 9 * * *"
+          timezone: Asia/Shanghai
+      - id: http_node
+        type: custom
+        data:
+          title: HTTP Request
+          type: http-request
+          method: GET
+          url: "https://example.com/health"
+          authorization:
+            type: no-auth
+          headers: ""
+          params: ""
+          body:
+            type: none
+            data: []
+      - id: end_node
+        type: custom
+        data:
+          title: End
+          type: end
+          outputs:
+            - variable: status_code
+              value_type: number
+              value_selector: [http_node, status_code]
+    edges:
+      - id: trigger-to-http
+        source: trigger_node
+        sourceHandle: source
+        target: http_node
+        targetHandle: target
+      - id: http-to-end
+        source: http_node
+        sourceHandle: source
+        target: end_node
+        targetHandle: target

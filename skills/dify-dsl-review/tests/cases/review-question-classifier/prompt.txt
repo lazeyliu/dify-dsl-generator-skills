@@ -1,0 +1,4 @@
+使用 $dify-dsl-review 只读审核这份带 question-classifier 的 Dify workflow。
+目标文件: tests/fixtures/dsl/question-classifier-routing-workflow.yml
+
+重点检查 `classes[*].id`、边句柄一致性和分类出口完整性。不要修改文件。

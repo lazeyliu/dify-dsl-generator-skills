@@ -1,0 +1,21 @@
+**问题归因**
+- 当前插件触发事件是 `on_created`，如果外部插件实际只发 `on_updated`，就需要同步改事件名。
+
+**最小修复路径**
+- 保持入口类型和其余字段不变
+- 只把 `event_name` 从 `on_created` 改成 `on_updated`
+
+**变更影响**
+- 只有 `on_updated` 事件会继续触发当前工作流
+- 原来的 `on_created` 事件将不再命中
+
+**修改后的 DSL**
+```yaml
+data:
+  type: trigger-plugin
+  event_name: on_updated
+```
+
+**剩余风险**
+- 外部订阅方如果仍使用旧事件名，需要一起改
+- 当前未做独立复核

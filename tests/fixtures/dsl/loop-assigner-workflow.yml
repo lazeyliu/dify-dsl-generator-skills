@@ -1,0 +1,91 @@
+kind: app
+version: 0.6.0
+app:
+  mode: workflow
+  name: loop-assigner-workflow
+  description: ""
+dependencies: []
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    nodes:
+      - id: start_node
+        type: custom
+        data:
+          title: Start
+          type: start
+          variables: []
+      - id: loop_node
+        type: custom
+        data:
+          title: Loop
+          type: loop
+          loop_count: 10
+          logical_operator: and
+          break_conditions:
+            - variable_selector: [loop_node, num]
+              comparison_operator: "≥"
+              value: "5"
+              varType: number
+          loop_variables:
+            - label: num
+              var_type: number
+              value_type: constant
+              value: 1
+          start_node_id: loop_start
+      - id: loop_start
+        type: custom-loop-start
+        parentId: loop_node
+        data:
+          title: ""
+          type: loop-start
+      - id: assigner_node
+        type: custom
+        parentId: loop_node
+        data:
+          title: Variable Assigner
+          type: assigner
+          version: "2"
+          items:
+            - variable_selector: [loop_node, num]
+              input_type: constant
+              operation: +=
+              value: 1
+      - id: loop_end
+        type: custom-loop-end
+        parentId: loop_node
+        data:
+          title: ""
+          type: loop-end
+      - id: end_node
+        type: custom
+        data:
+          title: End
+          type: end
+          outputs:
+            - variable: num
+              value_type: number
+              value_selector: [loop_node, num]
+    edges:
+      - id: start-to-loop
+        source: start_node
+        sourceHandle: source
+        target: loop_node
+        targetHandle: target
+      - id: loop-start-to-assigner
+        source: loop_start
+        sourceHandle: source
+        target: assigner_node
+        targetHandle: target
+      - id: assigner-to-loop-end
+        source: assigner_node
+        sourceHandle: source
+        target: loop_end
+        targetHandle: target
+      - id: loop-to-end
+        source: loop_node
+        sourceHandle: source
+        target: end_node
+        targetHandle: target
