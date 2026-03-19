@@ -25,7 +25,7 @@ bash scripts/install_codex_bundle.sh
 1. 准备本仓库本地路径，例如：
 
 ```bash
-/path/to/tee
+/path/to/project-root
 ```
 
 2. 创建 Codex 原生 skills 发现目录：
@@ -37,7 +37,7 @@ mkdir -p ~/.agents/skills
 3. 把整个 `skills/` 目录作为一个 bundle 挂进去：
 
 ```bash
-ln -s /path/to/tee/skills ~/.agents/skills/dify-dsl
+ln -s /path/to/project-root/skills ~/.agents/skills/dify-dsl
 ```
 
 4. 重启 Codex。

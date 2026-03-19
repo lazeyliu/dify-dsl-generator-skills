@@ -1,8 +1,8 @@
-# tee
+# Dify DSL Skill Pack
 
 [简体中文](README.zh-CN.md)
 
-`tee` is a skill repository for working with `Dify DSL`.
+This repository is a skill pack for working with `Dify DSL`.
 
 It is not an application repository and it is not just a template collection. It provides a structured set of skills, references, fixtures, and validation scripts for AI agents that need to design, generate, review, refactor, and validate `Dify Workflow`, `Chatflow`, and `RAG Pipeline` DSL.
 
@@ -128,7 +128,7 @@ Current Codex builds may still list multiple downstream `dify-dsl-*` skills in t
 ## Repository Layout
 
 ```text
-tee/
+project-root/
 ├── .codex/INSTALL.md
 ├── .github/workflows/validate.yml
 ├── docs/

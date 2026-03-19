@@ -1,8 +1,8 @@
-# tee
+# Dify DSL 技能包
 
 [English](README.md)
 
-`tee` 是一个面向 `Dify DSL` 的技能仓库。
+这是一个面向 `Dify DSL` 的技能仓库。
 
 它不是业务应用仓库，也不是单纯的模板集合。它提供的是一整套给 AI agent 使用的 skill、参考资料、样本和验证脚本，用来稳定地处理 `Dify Workflow`、`Chatflow` 和 `RAG Pipeline` DSL。
 
@@ -134,7 +134,7 @@ bash scripts/install_codex_bundle.sh
 ## 仓库结构
 
 ```text
-tee/
+project-root/
 ├── .codex/INSTALL.md
 ├── .github/workflows/validate.yml
 ├── docs/
