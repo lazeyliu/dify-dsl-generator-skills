@@ -137,6 +137,7 @@ project-root/
 ├── scripts/
 │   ├── install_codex_bundle.sh
 │   ├── quick_validate.py
+│   ├── validate_skill_md.rb
 │   ├── validate_skill_repo.py
 │   └── validate_forward_testing.py
 ├── skills/
@@ -175,6 +176,13 @@ Validate repository structure:
 python3 scripts/quick_validate.py
 ```
 
+Final-validate all or one `SKILL.md` file:
+
+```bash
+ruby scripts/validate_skill_md.rb
+ruby scripts/validate_skill_md.rb skills/using-dify-dsl
+```
+
 Run forward testing:
 
 ```bash
@@ -208,6 +216,35 @@ It runs two jobs:
   runs `python3 scripts/validate_forward_testing.py`
 
 The `forward-testing` job uploads `.forward-testing/latest-report.json` as an artifact.
+
+The `structure` job now runs `ruby scripts/validate_skill_md.rb` first for final `SKILL.md` validation, then continues with the repository-level Python checks.
+
+## Step-by-Step Final Validation for `SKILL.md`
+
+1. Run the Ruby final validator to confirm the `SKILL.md` frontmatter and optional `agents/openai.yaml` parse cleanly:
+
+```bash
+ruby scripts/validate_skill_md.rb
+```
+
+2. Run the repository-level validator so `SKILL.md` validation, directory structure, and generated-doc sync are checked together:
+
+```bash
+python3 scripts/quick_validate.py
+```
+
+3. If the change affects routing, coordination paths, or case expectations, run forward testing:
+
+```bash
+python3 scripts/validate_forward_testing.py
+```
+
+4. Do a final manual review of the current skill's `SKILL.md`:
+   - confirm `name` matches the directory name
+   - confirm `description` works as a trigger, not just a summary
+   - confirm the body keeps only workflow, constraints, and necessary references
+   - confirm every relative link points to a real file
+   - if `agents/openai.yaml` exists, confirm `default_prompt` explicitly includes `$skill-name`
 
 ## Maintenance Notes
 

@@ -143,6 +143,7 @@ project-root/
 ├── scripts/
 │   ├── install_codex_bundle.sh
 │   ├── quick_validate.py
+│   ├── validate_skill_md.rb
 │   ├── validate_skill_repo.py
 │   └── validate_forward_testing.py
 ├── skills/
@@ -181,6 +182,13 @@ project-root/
 python3 scripts/quick_validate.py
 ```
 
+终验全部或单个 skill 的 `SKILL.md`：
+
+```bash
+ruby scripts/validate_skill_md.rb
+ruby scripts/validate_skill_md.rb skills/using-dify-dsl
+```
+
 运行整套前向验证：
 
 ```bash
@@ -214,6 +222,35 @@ GitHub Actions 工作流在 [validate.yml](.github/workflows/validate.yml)。
   运行 `python3 scripts/validate_forward_testing.py`
 
 `forward-testing` job 会上传 `.forward-testing/latest-report.json` 作为 artifact。
+
+其中 `structure` job 现在会先通过 `ruby scripts/validate_skill_md.rb` 做 `SKILL.md` 终验，再继续执行仓库级 Python 结构校验。
+
+## `SKILL.md` 一步一步最终验证
+
+1. 先跑 Ruby 终验，确认 `SKILL.md` frontmatter 和可选的 `agents/openai.yaml` 都能被真实解析：
+
+```bash
+ruby scripts/validate_skill_md.rb
+```
+
+2. 再跑仓库总校验，确认 `SKILL.md` 终验、目录结构、文档同步状态一起通过：
+
+```bash
+python3 scripts/quick_validate.py
+```
+
+3. 如果这次改动影响 skill 路由、协作路径或 case 预期，再补跑前向验证：
+
+```bash
+python3 scripts/validate_forward_testing.py
+```
+
+4. 最后人工复核当前 skill 的 `SKILL.md`：
+   - `name` 是否与目录名一致
+   - `description` 是否足够像触发词，而不只是简介
+   - 正文是否只保留流程、约束和必要引用，没有堆砌背景说明
+   - 相对链接是否都指向存在的文件
+   - 如果存在 `agents/openai.yaml`，`default_prompt` 是否显式包含 `$skill-name`
 
 ## 维护约定
 
